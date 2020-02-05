@@ -2,11 +2,12 @@ import React from "react";
 import { Formik } from "formik";
 
 import { AuthSchema } from "../../helpers/validation";
-import LoginForm from "./LoginForm";
+
+import RegisterForm from "./RegisterForm";
 
 import cartIcon from "../../assets/cart-white.png";
 
-const Login = () => {
+const Register = () => {
   return (
     <div className="w-full xl:h-screen xl:flex">
       <div className="bg-blue-700 text-center text-white p-10 xl:py-0 xl:h-screen xl:flex flex-col justify-center items-center xl:w-1/3">
@@ -16,8 +17,8 @@ const Login = () => {
         <h2 className="mt-5 text-xl">Welcome to Ecommerce Admin</h2>
       </div>
 
-      {/* Login form */}
       <div className="w-full px-5 pb-8 md:pb-0 mt-10 md:px-0 md:mt-20 xl:mt-0 md:flex justify-center items-center flex-col">
+        {/* Registration form */}
         <Formik
           initialValues={{ email: "", password: "" }}
           validationSchema={AuthSchema}
@@ -29,7 +30,7 @@ const Login = () => {
           }}
         >
           {({ values, errors, touched, handleSubmit, isSubmitting }) => (
-            <LoginForm
+            <RegisterForm
               form={{ values, handleSubmit, errors, touched, isSubmitting }}
             />
           )}
@@ -42,4 +43,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

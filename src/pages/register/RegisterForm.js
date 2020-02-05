@@ -8,12 +8,12 @@ const LoginForm = ({ form }) => {
       className="bg-white shadow-md rounded px-8 pt-10 pb-12 mb-4 md:w-2/3 xl:w-2/5"
       onSubmit={form.handleSubmit}
     >
-      <div className="mb-4 w-full">
+      <div className="mb-5 w-full">
         <h3 className="capitalize text-blue-400 text-xl md:text-2xl text-center mb-2">
-          welcome back :)
+          welcome :)
         </h3>
         <p className="capitalize text-sm text-blue-400 text-center">
-          please login to access dashboard. admin accounts only
+          please register an admin account here.
         </p>
       </div>
       <div className="mb-4">
@@ -52,29 +52,23 @@ const LoginForm = ({ form }) => {
           <ErrorMessage name="password" />
         </p>
       </div>
-      <div className="flex items-center justify-between mb-5">
+      <div className="flex justify-between flex-col md:flex-row">
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline capitalize"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-5 md:mb-0 rounded focus:outline-none focus:shadow-outline capitalize text-center md:text-left"
           type="submit"
         >
-          {form.isSubmitting ? "loading..." : "login"}
+          {form.isSubmitting ? "loading..." : "register"}
         </button>
-        <Link
-          className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-          to="#"
-        >
-          Forgot Password?
-        </Link>
+        <p className="self-center text-gray-400 text-sm">
+          Already have an account?{" "}
+          <Link
+            className="align-baseline font-bold text-blue-500 hover:text-blue-800"
+            to="/"
+          >
+            Login
+          </Link>
+        </p>
       </div>
-      <p className="text-center text-gray-400 text-sm">
-        Don't have an account?{" "}
-        <Link
-          className="align-baseline font-bold text-blue-500 hover:text-blue-800"
-          to="/register"
-        >
-          Sign up
-        </Link>
-      </p>
     </Form>
   );
 };

@@ -2,7 +2,7 @@ import React from "react";
 import { Router } from "@reach/router";
 
 import Login from "./pages/login/Login";
-import Register from "./pages/Register";
+import Register from "./pages/register/Register";
 import TopNav from "./components/TopNav";
 
 import "./styles/app.css";
