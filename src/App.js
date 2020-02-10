@@ -3,18 +3,19 @@ import { Router } from "@reach/router";
 
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
-import TopNav from "./components/TopNav";
+import Dashboard from "./pages/dashboard";
 
 import "./styles/app.css";
 
 function App() {
   return (
-    <>
+    <div className="font-body">
       <Router>
         <Login path="/" />
         <Register path="/register" />
+        <Dashboard path="/dashboard/*" />
       </Router>
-    </>
+    </div>
   );
 }
 

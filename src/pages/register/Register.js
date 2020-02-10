@@ -14,7 +14,7 @@ const Register = () => {
         <div className="w-16 mx-auto">
           <img className="w-full" src={cartIcon} alt="Cart icon" />
         </div>
-        <h2 className="mt-5 text-xl">Welcome to Ecommerce Admin</h2>
+        <h2 className="mt-5 text-xl">Welcome to E-commerce Admin</h2>
       </div>
 
       <div className="w-full px-5 pb-8 md:pb-0 mt-10 md:px-0 md:mt-20 xl:mt-0 md:flex justify-center items-center flex-col">

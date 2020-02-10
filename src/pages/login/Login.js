@@ -13,7 +13,7 @@ const Login = () => {
         <div className="w-16 mx-auto">
           <img className="w-full" src={cartIcon} alt="Cart icon" />
         </div>
-        <h2 className="mt-5 text-xl">Welcome to Ecommerce Admin</h2>
+        <h2 className="mt-5 text-xl">Welcome to E-commerce Admin</h2>
       </div>
 
       {/* Login form */}
