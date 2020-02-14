@@ -18,7 +18,9 @@ export const CreateProductSchema = Yup.object().shape({
   category: Yup.string()
     .trim()
     .required("Please select a category"),
-  description: Yup.array().required(),
+  description: Yup.string()
+    .trim()
+    .required("Please provide product description"),
   quantity: Yup.number()
     .typeError("Quantity must be a number")
     .positive("Quantity must be greater than zero")

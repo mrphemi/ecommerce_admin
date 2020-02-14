@@ -1,7 +1,9 @@
 import React from "react";
-import { Form, Field, ErrorMessage } from "formik";
+import { Form, Field } from "formik";
 
 import FileInput from "./FileInput";
+import ErrorMsg from "../../../components/form/ErrorMsg";
+import Description from "./Description";
 
 const createProductForm = ({ form }) => {
   return (
@@ -16,15 +18,13 @@ const createProductForm = ({ form }) => {
             enter product name
           </label>
           <Field
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
             id="name"
             name="name"
             type="text"
             placeholder="Enter product name"
           />
-          <p className="text-red-500 text-sm italic">
-            <ErrorMessage name="name" />
-          </p>
+          <ErrorMsg name="name" />
         </div>
         {/* Category */}
         <div className="w-full md:w-1/2 px-3">
@@ -55,9 +55,7 @@ const createProductForm = ({ form }) => {
               </svg>
             </div>
           </div>
-          <p className="text-red-500 text-sm italic">
-            <ErrorMessage name="category" />
-          </p>
+          <ErrorMsg name="category" />
         </div>
       </div>
 
@@ -74,12 +72,10 @@ const createProductForm = ({ form }) => {
             className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none"
             id="price"
             name="price"
-            type="number"
+            type="text"
             placeholder="Enter Price"
           />
-          <p className="text-red-500 text-sm italic">
-            <ErrorMessage name="price" />
-          </p>
+          <ErrorMsg name="price" />
         </div>
         {/* Quantity */}
         <div className="w-full md:w-1/3 px-3">
@@ -96,16 +92,20 @@ const createProductForm = ({ form }) => {
             type="number"
             placeholder="Enter Quantity"
           />
-          <p className="text-red-500 text-sm italic">
-            <ErrorMessage name="price" />
-          </p>
+          <ErrorMsg name="quantity" />
         </div>
         {/* Image file upload */}
         <div className="w-full md:w-1/3 px-3">
           <Field name="product_img" component={FileInput} />
-          <p className="text-red-500 text-sm italic">
-            <ErrorMessage name="product_img" />
-          </p>
+          <ErrorMsg name="product_img" />
+        </div>
+      </div>
+
+      <div className="flex flex-wrap -mx-3 mb-10">
+        {/* Description */}
+        <div className="w-full px-3">
+          <Field name="description" component={Description} />
+          <ErrorMsg name="description" />
         </div>
       </div>
 
@@ -113,7 +113,7 @@ const createProductForm = ({ form }) => {
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline capitalize"
         type="submit"
       >
-        {form.isSubmitting ? "loading..." : "create"}
+        {form.isSubmitting ? "loading..." : "create product"}
       </button>
     </Form>
   );

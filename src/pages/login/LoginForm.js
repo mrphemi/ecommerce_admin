@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "@reach/router";
-import { Field, Form, ErrorMessage } from "formik";
+import { Field, Form } from "formik";
+
+import ErrorMsg from "../../components/form/ErrorMsg";
 
 const LoginForm = ({ form }) => {
   return (
@@ -30,9 +32,7 @@ const LoginForm = ({ form }) => {
           placeholder="Enter Email"
           name="email"
         />
-        <p className="text-red-500 text-xs italic">
-          <ErrorMessage name="email" />
-        </p>
+        <ErrorMsg name="email" />
       </div>
       <div className="mb-6">
         <label
@@ -48,9 +48,7 @@ const LoginForm = ({ form }) => {
           placeholder="**********"
           name="password"
         />
-        <p className="text-red-500 text-xs italic">
-          <ErrorMessage name="password" />
-        </p>
+        <ErrorMsg name="password" />
       </div>
       <div className="flex items-center justify-between mb-5">
         <button

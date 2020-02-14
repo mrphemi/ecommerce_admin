@@ -9,8 +9,8 @@ const CreateProduct = () => {
   const initialValues = {
     name: "",
     category: "",
-    description: ["blahh", "woooooo"],
-    price: 1,
+    description: "",
+    price: "",
     quantity: 1,
     product_img: null
   };
@@ -27,33 +27,25 @@ const CreateProduct = () => {
           form.append("name", values.name);
           form.append("category", values.category);
           form.append("description", values.description);
-          form.append("price", values.price);
+          form.append("price", Number(values.price));
           form.append("quantity", values.quantity);
           form.append("product_img", values.product_img);
 
-          console.log(values);
+          console.log(values, form.get("price"));
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
             setSubmitting(false);
           }, 1000);
         }}
       >
-        {({
-          values,
-          errors,
-          touched,
-          handleSubmit,
-          isSubmitting,
-          setFieldValue
-        }) => (
+        {({ values, errors, touched, handleSubmit, isSubmitting }) => (
           <Form
             form={{
               values,
               handleSubmit,
               errors,
               touched,
-              isSubmitting,
-              setFieldValue
+              isSubmitting
             }}
           />
         )}
