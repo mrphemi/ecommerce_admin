@@ -20,7 +20,7 @@ const TopNav = ({ toggle }) => {
         <Logo />
       </Link>
 
-      <UserIcon className="text-white ml-auto" />
+      <UserIcon className="text-gray-500 hover:text-white ml-auto" />
     </nav>
   );
 };

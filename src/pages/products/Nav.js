@@ -18,7 +18,7 @@ const Nav = () => {
       {links.map(link => (
         <li className="mr-3" key={link.title}>
           <NavLink
-            className="inline-block border border-blue-500 rounded-full text-blue-500 hover:bg-blue-500 hover:text-white py-1 px-3 capitalize"
+            className="inline-block border border-blue-500 rounded-full text-blue-500 text-sm hover:bg-blue-500 hover:text-white py-2 px-3 capitalize"
             to={link.url}
           >
             {link.title}

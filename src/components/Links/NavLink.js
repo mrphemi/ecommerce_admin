@@ -4,7 +4,7 @@ import { Link } from "@reach/router";
 const isActive = ({ isCurrent }) => {
   return isCurrent
     ? {
-        className: `inline-block border border-blue-500 rounded-full py-1 px-3 text-white bg-blue-500 capitalize`
+        className: `inline-block border border-blue-500 rounded-full py-2 px-3 text-white text-sm bg-blue-500 capitalize`
       }
     : null;
 };

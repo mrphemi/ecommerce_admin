@@ -41,9 +41,10 @@ const createProductForm = ({ form }) => {
               className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="category"
             >
+              <option value="">--Please choose a category--</option>
               <option value="5e374638fcf65c1858cfbaaa">Jackets</option>
-              <option value="5e374638fcf65c1858cfbaaa">Watches</option>
-              <option value="5e374638fcf65c1858cfbaaa">Bags and Purses</option>
+              <option value="5e46be8f8f16a26ece23e4fc">Watches</option>
+              <option value="5e46be98991ea86d3a14ad9a">Bags and Purses</option>
             </Field>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg

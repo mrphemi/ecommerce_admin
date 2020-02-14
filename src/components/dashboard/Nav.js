@@ -7,7 +7,7 @@ const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <SideNav isOpen={isOpen} />
+      <SideNav isOpen={isOpen} setIsOpen={setIsOpen} />
       <TopNav toggle={setIsOpen} />
     </>
   );

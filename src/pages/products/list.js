@@ -7,36 +7,42 @@ import { ReactComponent as Edit } from "../../assets/edit.svg";
 
 const products = [
   {
+    id: "5e46bdb4ac9267c21eb70ced",
     name: "Analog classic wrist watch",
     price: 86.99,
     image:
       "https://res.cloudinary.com/mrphemi/image/upload/v1547072403/samples/ecommerce/analog-classic.jpg"
   },
   {
+    id: "5e46bdde1cd99777c65952b1",
     name: "Nike shoes",
     price: 89.99,
     image:
       "https://res.cloudinary.com/mrphemi/image/upload/v1547072408/samples/ecommerce/shoes.png"
   },
   {
+    id: "5e46bdf701dc3ba49f8bf5a5",
     name: "Darlin baseball hat",
     price: 12.99,
     image:
       "https://res.cloudinary.com/mrphemi/image/upload/c_fit,w_400/v1580681625/ecommerce/products/1580681623552_product_img.jpg"
   },
   {
+    id: "5e46be0d751e16dad1c77bf8",
     name: "Calvin clein wrist watch",
     price: 56.99,
     image:
       "https://res.cloudinary.com/mrphemi/image/upload/v1581081813/samples/ecommerce/ck.png"
   },
   {
+    id: "5e46be24b938e23eff8efabe",
     name: "Brown leather bag",
     price: 86.99,
     image:
       "https://res.cloudinary.com/mrphemi/image/upload/v1581081917/samples/ecommerce/brown_bag.png"
   },
   {
+    id: "5e46be36984711f248ab16c0",
     name: "Dark brown leather bag",
     price: 67.99,
     image:
@@ -50,9 +56,9 @@ const ProductsList = () => {
       {products.map(product => (
         <div
           className="max-w-sm rounded-md overflow-hidden shadow-2xl transform hover:scale-105"
-          key={product.name}
+          key={product.id}
         >
-          <Link to="#">
+          <Link to={product.id}>
             <div>
               <img
                 className="h-40 w-full block object-scale-down mx-auto"
