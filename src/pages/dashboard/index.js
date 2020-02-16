@@ -1,11 +1,12 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Router } from "@reach/router";
 
 import Nav from "../../components/dashboard/Nav";
 import Products from "../products";
-import ProductsList from "../products/list";
-import CreateProduct from "../products/create/create";
+import ProductsList from "../products/list/List";
+import CreateProduct from "../products/create/Create";
+import EditProduct from "../products/edit/Edit";
+
 import ProductInfo from "../products/product/Product";
 
 const Dashboard = () => {
@@ -17,6 +18,7 @@ const Dashboard = () => {
           <Products path="products">
             <ProductsList path="/" />
             <CreateProduct path="create" />
+            <EditProduct path="edit/:productId" />
             <ProductInfo path=":productId" />
           </Products>
         </Router>
@@ -24,7 +26,5 @@ const Dashboard = () => {
     </div>
   );
 };
-
-Dashboard.propTypes = {};
 
 export default Dashboard;

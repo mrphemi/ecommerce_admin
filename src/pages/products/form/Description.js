@@ -19,6 +19,7 @@ const Description = ({ field, form }) => {
         id="description"
         cols="30"
         rows="10"
+        value={form.values.description}
         onChange={handleChange}
       ></textarea>
     </>

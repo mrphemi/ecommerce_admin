@@ -5,13 +5,14 @@ import { CreateProductSchema } from "../../../helpers/validation";
 
 import Form from "../form/ProductForm";
 
-const CreateProduct = () => {
+const EditProduct = () => {
   const initialValues = {
-    name: "",
-    category: "",
-    description: "",
-    price: "",
-    quantity: 1,
+    name: "Nike shoes",
+    category: "5e49444dacbac39d8d559f82",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    price: 89.99,
+    quantity: 10,
     product_img: null
   };
 
@@ -34,7 +35,7 @@ const CreateProduct = () => {
   return (
     <>
       <h1 className="capitalize text-xl mb-10 font-bold text-gray-700">
-        create new product
+        edit product details
       </h1>
       <Formik
         initialValues={initialValues}
@@ -43,7 +44,7 @@ const CreateProduct = () => {
       >
         {({ values, errors, touched, handleSubmit, isSubmitting }) => (
           <Form
-            role="create"
+            role="edit"
             form={{
               values,
               handleSubmit,
@@ -58,4 +59,4 @@ const CreateProduct = () => {
   );
 };
 
-export default CreateProduct;
+export default EditProduct;

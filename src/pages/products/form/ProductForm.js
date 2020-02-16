@@ -1,11 +1,11 @@
 import React from "react";
 import { Form, Field } from "formik";
 
-import FileInput from "./FileInput";
 import ErrorMsg from "../../../components/form/ErrorMsg";
+import FileInput from "./FileInput";
 import Description from "./Description";
 
-const createProductForm = ({ form }) => {
+const ProductForm = ({ form, role }) => {
   return (
     <Form onSubmit={form.handleSubmit}>
       <div className="flex flex-wrap -mx-3 mb-6">
@@ -45,6 +45,7 @@ const createProductForm = ({ form }) => {
               <option value="5e374638fcf65c1858cfbaaa">Jackets</option>
               <option value="5e46be8f8f16a26ece23e4fc">Watches</option>
               <option value="5e46be98991ea86d3a14ad9a">Bags and Purses</option>
+              <option value="5e49444dacbac39d8d559f82">Shoes and Kicks</option>
             </Field>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg
@@ -114,10 +115,14 @@ const createProductForm = ({ form }) => {
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline capitalize"
         type="submit"
       >
-        {form.isSubmitting ? "loading..." : "create product"}
+        {form.isSubmitting
+          ? "loading..."
+          : role === "create"
+          ? "create product"
+          : "save changes"}
       </button>
     </Form>
   );
 };
 
-export default createProductForm;
+export default ProductForm;

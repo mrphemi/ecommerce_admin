@@ -6,6 +6,7 @@ import { ReactComponent as Trash } from "../../../assets/trash.svg";
 import { ReactComponent as Edit } from "../../../assets/edit.svg";
 
 const product = {
+  id: "5e46bdde1cd99777c65952b1",
   name: "Nike shoes",
   price: 89.99,
   image:
