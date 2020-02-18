@@ -9,6 +9,7 @@ const product = {
   id: "5e46bdde1cd99777c65952b1",
   name: "Nike shoes",
   price: 89.99,
+  quantity: 6,
   image:
     "https://res.cloudinary.com/mrphemi/image/upload/v1547072408/samples/ecommerce/shoes.png",
   description:
@@ -28,17 +29,18 @@ const Product = ({ productId }) => {
           <h2 className="text-2xl text-gray-700 mb-3">{product.name}</h2>
           <div className="flex mb-5">
             <span className="text-lg text-gray-500 mr-5">${product.price}</span>
-            <Quantity quantity={0} />
+            <Quantity quantity={product.quantity} />
           </div>
+          <p className="text-gray-500 mb-5">{`${product.quantity} remaining in stock`}</p>
           <p className="text-gray-500 mb-8">{product.description}</p>
           <div className="buttons flex">
-            <button className="bg-transparent border border-red-500 py-2 px-3 capitalize mr-5 text-sm text-red-400 flex hover:bg-red-500 hover:text-white">
+            <button className="bg-transparent border border-red-500 py-2 px-3 capitalize mr-5 text-sm text-red-400 hover:bg-red-500 hover:text-white outline-none">
               delete product
-              <Trash className="w-4 ml-2" />
+              <Trash className="w-4 ml-2 inline-block" />
             </button>
-            <button className="bg-transparent border border-blue-500 py-2 px-3 capitalize text-sm text-blue-400 flex items-center hover:bg-blue-500 hover:text-white">
+            <button className="bg-transparent border border-blue-500 py-2 px-3 capitalize text-sm text-blue-400 hover:bg-blue-500 hover:text-white">
               edit product
-              <Edit className="w-4 ml-2" />
+              <Edit className="w-4 ml-2 inline-block" />
             </button>
           </div>
         </div>

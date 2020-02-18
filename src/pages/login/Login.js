@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik } from "formik";
 
-import { AuthSchema } from "../../helpers/validation";
+import { LoginSchema } from "../../helpers/validation";
 import LoginForm from "./LoginForm";
 
 import { ReactComponent as Logo } from "../../assets/zap.svg";
@@ -18,7 +18,7 @@ const Login = () => {
       <div className="w-full px-5 pb-8 md:pb-0 mt-10 md:px-0 md:mt-20 xl:mt-0 md:flex justify-center items-center flex-col">
         <Formik
           initialValues={{ email: "", password: "" }}
-          validationSchema={AuthSchema}
+          validationSchema={LoginSchema}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
               alert(JSON.stringify(values, null, 2));

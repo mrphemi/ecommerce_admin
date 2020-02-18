@@ -7,7 +7,7 @@ import ErrorMsg from "../../components/form/ErrorMsg";
 const LoginForm = ({ form }) => {
   return (
     <Form
-      className="bg-white shadow-md rounded px-8 pt-10 pb-12 mb-4 md:w-2/3 xl:w-2/5"
+      className="bg-white shadow-xl rounded px-8 pt-10 pb-12 mb-4 md:w-3/4 xl:w-3/6"
       onSubmit={form.handleSubmit}
     >
       <div className="mb-5 w-full">
@@ -18,6 +18,42 @@ const LoginForm = ({ form }) => {
           please register an admin account here.
         </p>
       </div>
+
+      <div className="md:mb-4 md:grid grid-cols-2 col-gap-5">
+        <div className="mb-4 md:mb-0">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="first_name"
+          >
+            First Name
+          </label>
+          <Field
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-2 leading-tight focus:outline-none focus:shadow-outline"
+            id="first_name"
+            type="text"
+            placeholder="Enter First Name"
+            name="first_name"
+          />
+          <ErrorMsg name="first_name" />
+        </div>
+        <div className="mb-4 md:mb-0">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="last_name"
+          >
+            Last Name
+          </label>
+          <Field
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 text-sm mb-2 leading-tight focus:outline-none focus:shadow-outline"
+            id="last_name"
+            type="text"
+            placeholder="Enter Last Name"
+            name="last_name"
+          />
+          <ErrorMsg name="last_name" />
+        </div>
+      </div>
+
       <div className="mb-4">
         <label
           className="block text-gray-700 text-sm font-bold mb-2"
@@ -50,6 +86,7 @@ const LoginForm = ({ form }) => {
         />
         <ErrorMsg name="password" />
       </div>
+
       <div className="flex justify-between flex-col md:flex-row">
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-5 md:mb-0 rounded focus:outline-none focus:shadow-outline capitalize text-center md:text-left"

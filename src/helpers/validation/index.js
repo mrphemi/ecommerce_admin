@@ -1,13 +1,30 @@
 import * as Yup from "yup";
 
-export const AuthSchema = Yup.object().shape({
+export const LoginSchema = Yup.object().shape({
   email: Yup.string()
     .trim()
     .email("Email must be a valid email")
     .required("Email is Required"),
   password: Yup.string()
-    .min(6, "Too Short. Minimum of 6 xters")
-    .max(70, "Too Long! maximum of 70 xters")
+    .min(6, "Too Short. Minimum of 6 characters")
+    .max(70, "Too Long! maximum of 70 characters")
+    .required("Password is Required")
+});
+
+export const RegisterSchema = Yup.object().shape({
+  first_name: Yup.string()
+    .trim()
+    .required("Please enter your first name"),
+  last_name: Yup.string()
+    .trim()
+    .required("Please enter your last name"),
+  email: Yup.string()
+    .trim()
+    .email("Email must be a valid email")
+    .required("Email is Required"),
+  password: Yup.string()
+    .min(6, "Too Short. Minimum of 6 characters")
+    .max(70, "Too Long! maximum of 70 characters")
     .required("Password is Required")
 });
 
