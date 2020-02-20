@@ -2,12 +2,15 @@ import React from "react";
 import { Router } from "@reach/router";
 
 import Nav from "../../components/dashboard/Nav";
+// products
 import Products from "../products";
 import ProductsList from "../products/list/List";
 import CreateProduct from "../products/create/Create";
 import EditProduct from "../products/edit/Edit";
-
 import ProductInfo from "../products/product/Product";
+// customers
+import Customers from "../customers";
+import CustomersList from "../customers/list/List";
 
 const Dashboard = () => {
   return (
@@ -21,6 +24,10 @@ const Dashboard = () => {
             <EditProduct path="edit/:productId" />
             <ProductInfo path=":productId" />
           </Products>
+
+          <Customers path="customers">
+            <CustomersList path="/" />
+          </Customers>
         </Router>
       </div>
     </div>
