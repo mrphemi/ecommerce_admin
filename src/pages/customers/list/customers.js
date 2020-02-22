@@ -1,3 +1,5 @@
+// Mock customers
+
 const customers = [
   {
     id: 1,

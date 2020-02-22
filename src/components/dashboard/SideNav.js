@@ -44,7 +44,7 @@ const SideNav = ({ isOpen, setIsOpen }) => {
         </Link>
 
         <Link
-          to="/"
+          to="categories"
           className="capitalize text-gray-600 hover:text-blue-400 text-sm py-4 flex items-center"
           onClick={close}
         >

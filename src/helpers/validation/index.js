@@ -71,3 +71,9 @@ export const EditProductSchema = Yup.object().shape({
     .required("Please enter price"),
   product_img: Yup.mixed()
 });
+
+export const CategorySchema = Yup.object().shape({
+  name: Yup.string()
+    .trim()
+    .required("Please enter category name")
+});

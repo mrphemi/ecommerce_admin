@@ -1,13 +1,7 @@
 import React from "react";
-import Nav from "./Nav";
 
 const Products = ({ children }) => {
-  return (
-    <>
-      <Nav />
-      {children}
-    </>
-  );
+  return <>{children}</>;
 };
 
 export default Products;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { ReactComponent as Trash } from "../../../assets/trash.svg";
 import { ReactComponent as View } from "../../../assets/view.svg";

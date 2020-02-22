@@ -5,7 +5,7 @@ import { CreateProductSchema } from "../../../helpers/validation";
 
 import Form from "../form/ProductForm";
 
-const EditProduct = () => {
+const EditProduct = ({ productId }) => {
   const initialValues = {
     name: "Nike shoes",
     category: "5e49444dacbac39d8d559f82",
@@ -42,14 +42,11 @@ const EditProduct = () => {
         validationSchema={CreateProductSchema}
         onSubmit={handleSubmit}
       >
-        {({ values, errors, touched, handleSubmit, isSubmitting }) => (
+        {({ handleSubmit, isSubmitting }) => (
           <Form
             role="edit"
             form={{
-              values,
               handleSubmit,
-              errors,
-              touched,
               isSubmitting
             }}
           />

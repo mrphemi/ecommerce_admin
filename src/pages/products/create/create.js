@@ -41,14 +41,11 @@ const CreateProduct = () => {
         validationSchema={CreateProductSchema}
         onSubmit={handleSubmit}
       >
-        {({ values, errors, touched, handleSubmit, isSubmitting }) => (
+        {({ handleSubmit, isSubmitting }) => (
           <Form
             role="create"
             form={{
-              values,
               handleSubmit,
-              errors,
-              touched,
               isSubmitting
             }}
           />

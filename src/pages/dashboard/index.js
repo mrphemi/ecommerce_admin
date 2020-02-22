@@ -11,6 +11,11 @@ import ProductInfo from "../products/product/Product";
 // customers
 import Customers from "../customers";
 import CustomersList from "../customers/list/List";
+// categories
+import Categories from "../categories";
+import CategoriesList from "../categories/list/List";
+import CreateCategory from "../categories/create/Create";
+import EditCategory from "../categories/edit/Edit";
 
 const Dashboard = () => {
   return (
@@ -28,6 +33,12 @@ const Dashboard = () => {
           <Customers path="customers">
             <CustomersList path="/" />
           </Customers>
+
+          <Categories path="categories">
+            <CategoriesList path="/" />
+            <CreateCategory path="create" />
+            <EditCategory path="edit/:categoryId" />
+          </Categories>
         </Router>
       </div>
     </div>
