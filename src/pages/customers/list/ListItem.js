@@ -3,7 +3,10 @@ import React from "react";
 import { ReactComponent as Trash } from "../../../assets/trash.svg";
 import { ReactComponent as View } from "../../../assets/view.svg";
 
-const ListItem = ({ customer }) => {
+const ListItem = ({ customer, navigate }) => {
+  const viewInfo = customerId => {
+    navigate(`info/${customerId}`);
+  };
   return (
     <>
       <div className="mb-10 py-3 lg:mb-0 lg:flex justify-between border-l-4 border-blue-300 lg:border-transparent shadow-xl lg:shadow-sm lg:shadow-inner transform lg:hover:scale-y-110 hover:border-blue-300 hover:border-l-4">
@@ -20,6 +23,7 @@ const ListItem = ({ customer }) => {
           <View
             className="w-5 h-5 lg:w-4 lg:h-4 text-gray-700 hover:text-blue-500 cursor-pointer"
             title="View customer details"
+            onClick={() => viewInfo(customer.id)}
           />
         </div>
       </div>

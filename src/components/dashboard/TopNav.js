@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "@reach/router";
+import { useSelector } from "react-redux";
 
 import { ReactComponent as Hamburger } from "../../assets/menu.svg";
 import { ReactComponent as Logo } from "../../assets/zap.svg";
 import { ReactComponent as UserIcon } from "../../assets/user.svg";
 
 const TopNav = ({ toggle }) => {
+  const first_name = useSelector(state => state.auth.user.first_name);
   // toggle side nav
   const toggleSideNav = () => {
     toggle(prevState => !prevState);
@@ -20,7 +22,12 @@ const TopNav = ({ toggle }) => {
         <Logo />
       </Link>
 
-      <UserIcon className="text-gray-500 hover:text-white ml-auto cursor-pointer" />
+      <div className="ml-auto flex relative">
+        <UserIcon className="text-gray-500 hover:text-white cursor-pointer" />
+        {first_name && (
+          <span className="text-white ml-3 capitalize">{first_name}</span>
+        )}
+      </div>
     </nav>
   );
 };

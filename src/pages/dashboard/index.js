@@ -11,6 +11,7 @@ import ProductInfo from "../products/product/Product";
 // customers
 import Customers from "../customers";
 import CustomersList from "../customers/list/List";
+import CustomerDetails from "../customers/customer/Details";
 // categories
 import Categories from "../categories";
 import CategoriesList from "../categories/list/List";
@@ -32,6 +33,7 @@ const Dashboard = () => {
 
           <Customers path="customers">
             <CustomersList path="/" />
+            <CustomerDetails path="info/:customerId" />
           </Customers>
 
           <Categories path="categories">

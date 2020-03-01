@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
 
 import { RegisterSchema } from "../../helpers/validation";
+import { register } from "../../actions/auth/authActions";
 
 import RegisterForm from "./RegisterForm";
 
 import { ReactComponent as Logo } from "../../assets/zap.svg";
 
-const Register = () => {
+const Register = ({ navigate }) => {
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+
+  useEffect(() => {
+    // if user is already authenticated, redirect to dashboard
+    if (isAuthenticated) navigate("/dashboard");
+  }, []);
+
+  const handleSubmit = values => {
+    dispatch(register(values, navigate));
+  };
+
   return (
     <div className="w-full xl:h-screen xl:flex">
       <div className="bg-blue-700 text-center text-white p-10 xl:py-0 xl:h-screen xl:flex flex-col justify-center items-center xl:w-1/3">
@@ -25,12 +39,7 @@ const Register = () => {
             password: ""
           }}
           validationSchema={RegisterSchema}
-          onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 400);
-          }}
+          onSubmit={handleSubmit}
         >
           {({ values, errors, touched, handleSubmit, isSubmitting }) => (
             <RegisterForm

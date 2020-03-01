@@ -34,11 +34,11 @@ const Product = ({ productId }) => {
           <p className="text-gray-500 mb-5">{`${product.quantity} remaining in stock`}</p>
           <p className="text-gray-500 mb-8">{product.description}</p>
           <div className="buttons flex">
-            <button className="bg-transparent border border-red-500 py-2 px-3 capitalize mr-5 text-sm text-red-400 hover:bg-red-500 hover:text-white outline-none">
+            <button className="rounded py-2 px-4 capitalize mr-5 text-sm text-white bg-red-500 hover:bg-red-700 outline-none">
               delete product
               <Trash className="w-4 ml-2 inline-block" />
             </button>
-            <button className="bg-transparent border border-blue-500 py-2 px-3 capitalize text-sm text-blue-400 hover:bg-blue-500 hover:text-white">
+            <button className="rounded py-2 px-4 capitalize text-sm text-white bg-blue-500 hover:bg-blue-700 outline-none">
               edit product
               <Edit className="w-4 ml-2 inline-block" />
             </button>

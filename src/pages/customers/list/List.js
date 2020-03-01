@@ -3,7 +3,7 @@ import React from "react";
 import customers from "./customers";
 import ListItem from "./ListItem";
 
-const List = () => {
+const List = ({ navigate }) => {
   return (
     <div className="w-full">
       <div className="text-left hidden lg:flex py-3">
@@ -13,7 +13,7 @@ const List = () => {
         <p className="px-4"></p>
       </div>
       {customers.map(customer => (
-        <ListItem customer={customer} key={customer.id} />
+        <ListItem customer={customer} navigate={navigate} key={customer.id} />
       ))}
     </div>
   );
