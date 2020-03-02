@@ -11,7 +11,7 @@ const ListItem = ({ product, navigate }) => {
 
   return (
     <div className="max-w-sm rounded-md overflow-hidden shadow-2xl transform hover:scale-105">
-      <Link to={product.id}>
+      <Link to={product._id}>
         <div>
           <img
             className="h-40 w-full block object-scale-down mx-auto"
@@ -36,7 +36,7 @@ const ListItem = ({ product, navigate }) => {
         <Edit
           className="w-5 h-5 text-gray-700 hover:text-blue-500 inline-block text-sm font-semibold mr-4 cursor-pointer"
           title="Edit product"
-          onClick={() => edit(product.id)}
+          onClick={() => edit(product._id)}
         />
       </div>
     </div>

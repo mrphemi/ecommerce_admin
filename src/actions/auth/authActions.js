@@ -16,7 +16,7 @@ export const setCurrentUser = user => {
 // Register user
 export const register = (data, navigate) => async dispatch => {
   try {
-    const register = await baseUrl.post("/register", data);
+    const register = await baseUrl.post("/admin/register", data);
     navigate("/login");
     console.log(register.data);
   } catch (error) {
@@ -27,7 +27,7 @@ export const register = (data, navigate) => async dispatch => {
 // Login user
 export const login = (data, navigate) => async dispatch => {
   try {
-    const login = await baseUrl.post("/login", data);
+    const login = await baseUrl.post("/admin/login", data);
     // Set token to localStorage
     const { token } = login.data;
     localStorage.setItem("authToken", token);
@@ -46,7 +46,7 @@ export const login = (data, navigate) => async dispatch => {
 // Log user out
 export const logout = () => dispatch => {
   // Remove token from local storage
-  localStorage.removeItem("jwtToken");
+  localStorage.removeItem("authToken");
   // Remove auth header for future requests
   setAuthToken(false);
   // Set current user to empty object {} which will set isAuthenticated to false
