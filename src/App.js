@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="font-body">
       <Router>
-        <Dashboard path="/" />
+        <Login path="/" />
         <Login path="/login" />
         <Register path="/register" />
         <Dashboard path="/dashboard/*" />

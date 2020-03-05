@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
+import { redirectTo } from "@reach/router";
 
 import { LoginSchema } from "../../helpers/validation";
 import { login } from "../../actions/auth/authActions";
@@ -14,8 +15,8 @@ const Login = ({ navigate }) => {
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
   useEffect(() => {
-    // if user is already authenticated, redirect to dashboard
-    if (isAuthenticated) navigate("/dashboard");
+    // if user is authenticated, redirect to dashboard
+    if (isAuthenticated) redirectTo("/dashboard");
   }, []);
 
   const handleSubmit = values => {

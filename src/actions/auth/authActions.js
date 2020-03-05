@@ -44,11 +44,12 @@ export const login = (data, navigate) => async dispatch => {
 };
 
 // Log user out
-export const logout = () => dispatch => {
+export const logout = navigate => dispatch => {
   // Remove token from local storage
   localStorage.removeItem("authToken");
   // Remove auth header for future requests
   setAuthToken(false);
   // Set current user to empty object {} which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
+  navigate("/login");
 };

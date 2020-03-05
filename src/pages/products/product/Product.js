@@ -27,13 +27,13 @@ const Product = ({ productId }) => {
             alt={name}
           />
           <div className="lg:w-3/5 lg:pl-10">
-            <h2 className="text-2xl text-gray-700 mb-3">{name}</h2>
+            <h2 className="text-2xl text-gray-700 font-bold mb-3">{name}</h2>
             <div className="flex mb-5">
               <span className="text-lg text-gray-500 mr-5">${price}</span>
               <Quantity quantity={quantity} />
             </div>
             <div className="mb-8">
-              <h2 className="capitalize text-gray-700 font-bold text-xl mb-3">
+              <h2 className="capitalize text-gray-700 font-medium text-xl mb-3">
                 product description
               </h2>
               <p className="text-gray-500">{description}</p>
