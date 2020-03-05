@@ -1,11 +1,17 @@
 import React from "react";
 import { Formik } from "formik";
+import { useDispatch } from "react-redux";
+import { navigate } from "@reach/router";
+
+import { createProduct } from "../../../actions/products/productActions";
 
 import { CreateProductSchema } from "../../../helpers/validation";
 
 import Form from "../form/ProductForm";
 
 const CreateProduct = () => {
+  const dispatch = useDispatch();
+
   const initialValues = {
     name: "",
     category: "",
@@ -15,7 +21,7 @@ const CreateProduct = () => {
     product_img: null
   };
 
-  const handleSubmit = (values, { setSubmitting }) => {
+  const handleSubmit = values => {
     const form = new FormData();
     form.append("name", values.name);
     form.append("category", values.category);
@@ -24,11 +30,7 @@ const CreateProduct = () => {
     form.append("quantity", values.quantity);
     form.append("product_img", values.product_img);
 
-    console.log(values, form.get("price"));
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 1000);
+    dispatch(createProduct(navigate, form));
   };
 
   return (

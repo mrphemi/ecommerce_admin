@@ -42,10 +42,9 @@ const ProductForm = ({ form, role }) => {
               id="category"
             >
               <option value="">--Please choose a category--</option>
-              <option value="5e374638fcf65c1858cfbaaa">Jackets</option>
-              <option value="5e46be8f8f16a26ece23e4fc">Watches</option>
-              <option value="5e46be98991ea86d3a14ad9a">Bags and Purses</option>
-              <option value="5e49444dacbac39d8d559f82">Shoes and Kicks</option>
+              <option value="5e36db38a3ad140023e05e01">Jackets</option>
+              <option value="5e36dc2da3ad140023e05e02">Hats</option>
+              <option value="5e36dca8a3ad140023e05e03">Shoes and Kicks</option>
             </Field>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg

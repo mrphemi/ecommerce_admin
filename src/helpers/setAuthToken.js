@@ -1,12 +1,12 @@
-import axios from "axios";
+import baseUrl from "./api";
 
 const setAuthToken = token => {
   if (token) {
     // Apply access_token to every request if logged in
-    axios.defaults.headers.common["access_token"] = token;
+    baseUrl.defaults.headers.common["access_token"] = token;
   } else {
     // Delete access_token
-    delete axios.defaults.headers.common["access_token"];
+    delete baseUrl.defaults.headers.common["access_token"];
   }
 };
 

@@ -1,4 +1,4 @@
-import { GET_PRODUCTS } from "../actions/types";
+import { GET_PRODUCTS, GET_SINGLE_PRODUCTS } from "../actions/types";
 
 const INITIAL_STATE = {
   productsList: [],
@@ -6,11 +6,17 @@ const INITIAL_STATE = {
 };
 
 const productsReducer = (state = INITIAL_STATE, action) => {
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case GET_PRODUCTS:
       return {
         ...state,
-        productsList: action.payload
+        productsList: payload
+      };
+    case GET_SINGLE_PRODUCTS:
+      return {
+        ...state,
+        product: payload
       };
     default:
       return state;

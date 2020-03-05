@@ -14,3 +14,27 @@ export const getProducts = () => async dispatch => {
     console.log(error);
   }
 };
+
+export const getSingleProduct = productId => async dispatch => {
+  try {
+    const product = await baseUrl.get(`/products/${productId}`);
+    const productDetails = product.data.product;
+    dispatch({
+      type: GET_SINGLE_PRODUCTS,
+      payload: productDetails
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const createProduct = (navigate, formData) => async dispatch => {
+  try {
+    const newProduct = await baseUrl.post("/products", formData);
+    console.log(newProduct);
+    const { id } = newProduct.data;
+    navigate(`/dashboard/products/${id}`);
+  } catch (error) {
+    console.log(error);
+  }
+};
