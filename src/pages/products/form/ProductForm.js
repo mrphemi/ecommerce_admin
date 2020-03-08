@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Form, Field } from "formik";
 
 import ErrorMsg from "../../../components/form/ErrorMsg";
@@ -125,3 +126,8 @@ const ProductForm = ({ form, role }) => {
 };
 
 export default ProductForm;
+
+ProductForm.propTypes = {
+  form: PropTypes.object.isRequired,
+  role: PropTypes.string.isRequired
+};

@@ -1,7 +1,8 @@
 import baseUrl from "../../helpers/api";
 
-import { GET_PRODUCTS, GET_SINGLE_PRODUCTS } from "../types";
+import { GET_PRODUCTS, GET_SINGLE_PRODUCTS, EDIT_PRODUCT } from "../types";
 
+// Get product list
 export const getProducts = () => async dispatch => {
   try {
     const products = await baseUrl.get("/products");
@@ -15,6 +16,7 @@ export const getProducts = () => async dispatch => {
   }
 };
 
+// Get single product info.
 export const getSingleProduct = productId => async dispatch => {
   try {
     const product = await baseUrl.get(`/products/${productId}`);
@@ -28,12 +30,26 @@ export const getSingleProduct = productId => async dispatch => {
   }
 };
 
+// Create new product
 export const createProduct = (navigate, formData) => async dispatch => {
   try {
     const newProduct = await baseUrl.post("/products", formData);
-    console.log(newProduct);
     const { id } = newProduct.data;
     navigate(`/dashboard/products/${id}`);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// Edit product info.
+export const editProduct = (
+  navigate,
+  productId,
+  formData
+) => async dispatch => {
+  try {
+    const edited = await baseUrl.put(`/products/${productId}`, formData);
+    navigate(`/dashboard/products/${productId}`);
   } catch (error) {
     console.log(error);
   }

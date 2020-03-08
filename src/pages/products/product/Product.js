@@ -7,13 +7,16 @@ import Quantity from "./Quantity";
 import { ReactComponent as Trash } from "../../../assets/trash.svg";
 import { ReactComponent as Edit } from "../../../assets/edit.svg";
 
-const Product = ({ productId }) => {
+const Product = ({ productId, navigate }) => {
   const dispatch = useDispatch();
   const product = useSelector(state => state.products.product);
 
   useEffect(() => {
     dispatch(getSingleProduct(productId));
   }, [dispatch, productId]);
+
+  // navigate to product edit page
+  const edit = id => navigate(`/dashboard/products/edit/${id}`);
 
   const { image, name, quantity, price, description } = product;
 
@@ -43,7 +46,10 @@ const Product = ({ productId }) => {
                 delete product
                 <Trash className="w-4 ml-2" />
               </button>
-              <button className="rounded py-2 px-4 capitalize text-white bg-blue-500 hover:bg-blue-700 outline-none flex">
+              <button
+                className="rounded py-2 px-4 capitalize text-white bg-blue-500 hover:bg-blue-700 outline-none flex"
+                onClick={() => edit(productId)}
+              >
                 edit product
                 <Edit className="w-4 ml-2" />
               </button>

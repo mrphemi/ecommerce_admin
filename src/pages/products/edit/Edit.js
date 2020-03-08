@@ -1,22 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
 
-import { CreateProductSchema } from "../../../helpers/validation";
+import {
+  getSingleProduct,
+  editProduct
+} from "../../../actions/products/productActions";
+
+import { EditProductSchema } from "../../../helpers/validation";
 
 import Form from "../form/ProductForm";
 
-const EditProduct = ({ productId }) => {
-  const initialValues = {
-    name: "Nike shoes",
-    category: "5e49444dacbac39d8d559f82",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    price: 89.99,
-    quantity: 10,
-    product_img: null
-  };
+const EditProduct = ({ navigate, productId }) => {
+  const dispatch = useDispatch();
+  const productInfo = useSelector(state => state.products.product);
 
-  const handleSubmit = (values, { setSubmitting }) => {
+  useEffect(() => {
+    dispatch(getSingleProduct(productId));
+  }, [dispatch, productId]);
+
+  const initialValues = Object.keys(productInfo).length
+    ? {
+        name: productInfo.name,
+        price: productInfo.price,
+        description: productInfo.description,
+        category: productInfo.category._id,
+        quantity: productInfo.quantity,
+        productImg: null
+      }
+    : {
+        name: "",
+        price: "",
+        description: "",
+        category: "",
+        quantity: "",
+        productImg: null
+      };
+
+  const handleSubmit = values => {
     const form = new FormData();
     form.append("name", values.name);
     form.append("category", values.category);
@@ -25,11 +46,7 @@ const EditProduct = ({ productId }) => {
     form.append("quantity", values.quantity);
     form.append("product_img", values.product_img);
 
-    console.log(values, form.get("price"));
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 1000);
+    dispatch(editProduct(navigate, productId, form));
   };
 
   return (
@@ -38,8 +55,9 @@ const EditProduct = ({ productId }) => {
         edit product details
       </h1>
       <Formik
+        enableReinitialize={true}
         initialValues={initialValues}
-        validationSchema={CreateProductSchema}
+        validationSchema={EditProductSchema}
         onSubmit={handleSubmit}
       >
         {({ handleSubmit, isSubmitting }) => (
