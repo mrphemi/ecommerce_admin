@@ -21,12 +21,17 @@ const ProductsList = ({ navigate }) => {
           to="create"
           className="mb-12 border rounded text-white text-sm bg-blue-500 hover:bg-blue-700 py-2 px-4 capitalize"
         >
-          <Add className="inline-block w-4 h-4" />
-          new product
+          <Add className="inline-block w-4 h-4" /> new product
         </Link>
       </div>
-
-      <div className="list grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="w-full">
+        <div className="text-left hidden lg:flex py-3">
+          <p className="pl-4 capitalize font-semibold w-3/12">photo</p>
+          <p className="capitalize font-semibold w-3/12">name</p>
+          <p className="capitalize font-semibold w-3/12">category</p>
+          <p className="capitalize font-semibold w-2/12">unit price</p>
+          <p className="px-4"></p>
+        </div>
         {products.map(product => (
           <ListItem product={product} navigate={navigate} key={product._id} />
         ))}
