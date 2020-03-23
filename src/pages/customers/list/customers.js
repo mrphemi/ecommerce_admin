@@ -4,8 +4,8 @@ const customers = [
   {
     id: 1,
     name: "Veronique McKniely",
-    email: "vmckniely0@eepurl.com",
-    phone: "593-468-8857"
+    email: "vmckniely0@eepurl.com"
+    // phone: "593-468-8857"
   },
   {
     id: 2,

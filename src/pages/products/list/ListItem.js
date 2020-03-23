@@ -15,38 +15,32 @@ const ListItem = ({ product, navigate }) => {
   };
 
   return (
-    <>
-      <div className="mb-10 py-3 px-3 lg:px-0 lg:mb-0 lg:flex justify-between border-l-4 border-blue-300 lg:border-transparent shadow-xl lg:shadow-sm lg:shadow-inner transform lg:hover:scale-y-110">
-        <div className="mb-4 lg:mb-0 lg:w-3/12 lg:pl-4">
-          <img
-            className="w-10 h-10 lg:w-6 lg:h-6"
-            src={product.image}
-            alt={product.name}
-          />
-        </div>
-        <div className="mb-4 lg:mb-0 capitalize font-medium lg:w-3/12">
-          {product.name}
-        </div>
-        <div className="mb-4 lg:mb-0 lg:w-3/12">{product.category.name}</div>
-        <div className="mb-4 lg:mb-0 lg:w-2/12">{product.price}</div>
-        <div className="flex w-1/3 md:w-1/4 lg:px-4 lg:w-1/12 justify-between items-center">
+    <tr className="shadow-sm shadow-inner text-gray-700">
+      <td className="w-1/6 px-4 py-2">
+        <img className="w-10 h-10" src={product.image} alt={product.name} />
+      </td>
+      <td className="w-1/4 px-4 py-2">{product.name}</td>
+      <td className="w-1/4 px-4 py-2">{product.category.name}</td>
+      <td className="w-1/4 px-4 py-2">{product.price}</td>
+      <td className="w-1/4 px-4 py-2">
+        <div className="flex">
           <View
             className="w-5 h-5 lg:w-4 lg:h-4 text-gray-700 hover:text-blue-500 cursor-pointer"
             title="View customer details"
             onClick={() => viewInfo(product._id)}
           />
           <Edit
-            className="w-5 h-5 lg:w-4 lg:h-4 text-gray-700 hover:text-blue-500 cursor-pointer"
+            className="ml-6 w-5 h-5 lg:w-4 lg:h-4 text-gray-700 hover:text-blue-500 cursor-pointer"
             title="View customer details"
             onClick={() => edit(product._id)}
           />
           <Trash
-            className="w-5 h-5 lg:w-4 lg:h-4 lg:mr-0 text-gray-700 hover:text-red-500 cursor-pointer"
+            className="ml-6 w-5 h-5 lg:w-4 lg:h-4 lg:mr-4 text-gray-700 hover:text-red-500 cursor-pointer"
             title="Delete customer"
           />
         </div>
-      </div>
-    </>
+      </td>
+    </tr>
   );
 };
 

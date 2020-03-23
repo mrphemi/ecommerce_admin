@@ -19,7 +19,7 @@ const ProductForm = ({ form, role }) => {
             enter product name
           </label>
           <Field
-            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border focus:border-2 focus:border-gray-500"
             id="name"
             name="name"
             type="text"
@@ -39,7 +39,7 @@ const ProductForm = ({ form, role }) => {
             <Field
               as="select"
               name="category"
-              className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border focus:border-2 focus:border-gray-500"
               id="category"
             >
               <option value="">--Please choose a category--</option>
@@ -71,7 +71,7 @@ const ProductForm = ({ form, role }) => {
             enter price
           </label>
           <Field
-            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border focus:border-2 focus:border-gray-500"
             id="price"
             name="price"
             type="text"
@@ -88,7 +88,7 @@ const ProductForm = ({ form, role }) => {
             enter quantity
           </label>
           <Field
-            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border focus:border-2 focus:border-gray-500"
             id="quantity"
             name="quantity"
             type="number"

@@ -33,7 +33,7 @@ function App() {
         dispatch(logout(navigate));
       }
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="font-body">

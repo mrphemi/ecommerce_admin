@@ -1,6 +1,6 @@
 import baseUrl from "../../helpers/api";
 
-import { GET_PRODUCTS, GET_SINGLE_PRODUCTS, EDIT_PRODUCT } from "../types";
+import { GET_PRODUCTS, GET_SINGLE_PRODUCTS } from "../types";
 
 // Get product list
 export const getProducts = () => async dispatch => {
@@ -30,6 +30,14 @@ export const getSingleProduct = productId => async dispatch => {
   }
 };
 
+// clean single product when product info page un-mounts
+export const cleanSingleProduct = () => dispatch => {
+  dispatch({
+    type: GET_SINGLE_PRODUCTS,
+    payload: {}
+  });
+};
+
 // Create new product
 export const createProduct = (navigate, formData) => async dispatch => {
   try {
@@ -48,7 +56,7 @@ export const editProduct = (
   formData
 ) => async dispatch => {
   try {
-    const edited = await baseUrl.put(`/products/${productId}`, formData);
+    await baseUrl.put(`/products/${productId}`, formData);
     navigate(`/dashboard/products/${productId}`);
   } catch (error) {
     console.log(error);

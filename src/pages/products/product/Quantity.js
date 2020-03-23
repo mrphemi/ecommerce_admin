@@ -3,13 +3,13 @@ import React from "react";
 const Quantity = ({ quantity }) => {
   return (
     <>
-      {quantity >= 10 && (
+      {quantity >= 20 && (
         <span className="px-2 py-1 bg-green-400 rounded text-white text-sm capitalize">
           in stock
         </span>
       )}
 
-      {quantity < 10 && quantity > 0 && (
+      {quantity < 20 && quantity > 0 && (
         <span className="px-2 py-1 bg-yellow-400 rounded text-white text-sm capitalize">
           limited in stock
         </span>

@@ -15,7 +15,7 @@ const Description = ({ field, form }) => {
         Add description
       </label>
       <textarea
-        className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none"
+        className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border focus:border-2 focus:border-gray-500"
         id="description"
         cols="30"
         rows="10"
