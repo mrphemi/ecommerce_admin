@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "@reach/router";
+import { useDispatch, useSelector } from "react-redux";
+
+import { getCategories } from "../../../actions/categories/categoriesActions";
 
 import ListItem from "./ListItem";
 import { ReactComponent as Add } from "../../../assets/add.svg";
 
-import categories from "./categories";
-
 const List = ({ navigate }) => {
+  const dispatch = useDispatch();
+  const categories = useSelector(state => state.categories.list);
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
+
   return (
     <>
       <div className="flex justify-end">
@@ -19,7 +27,11 @@ const List = ({ navigate }) => {
       </div>
       <div className="md:grid grid-cols-3 lg:grid-cols-4  col-gap-5 row-gap-5">
         {categories.map(category => (
-          <ListItem key={category.id} navigate={navigate} category={category} />
+          <ListItem
+            key={category._id}
+            navigate={navigate}
+            category={category}
+          />
         ))}
       </div>
     </>

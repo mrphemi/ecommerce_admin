@@ -1,21 +1,23 @@
 import React from "react";
 import { Formik } from "formik";
+import { useDispatch } from "react-redux";
+
+import { createCategory } from "../../../actions/categories/categoriesActions";
 
 import Form from "../form/CategoryForm";
 
 import { CategorySchema } from "../../../helpers/validation";
 
-const Create = () => {
+const Create = ({ navigate }) => {
+  const dispatch = useDispatch();
+
   const initialValues = {
     name: ""
   };
 
-  const handleSubmit = (values, { setSubmitting }) => {
-    console.log(values);
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 1000);
+  const handleSubmit = values => {
+    console.log(values.name);
+    dispatch(createCategory(navigate, { name: values.name }));
   };
 
   return (

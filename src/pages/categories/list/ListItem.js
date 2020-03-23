@@ -18,7 +18,7 @@ const ListItem = ({ category, navigate }) => {
         <Edit
           className="w-5 h-5 lg:w-4 lg:h-4 text-gray-700 hover:text-blue-500 cursor-pointer"
           title="View customer details"
-          onClick={() => edit(category.id)}
+          onClick={() => edit(category._id)}
         />
       </div>
     </div>
