@@ -1,23 +1,25 @@
 import React from "react";
 import { Formik } from "formik";
-import { useDispatch } from "react-redux";
 
-import { createCategory } from "../../../actions/categories/categoriesActions";
+import baseUrl from "../../../helpers/api";
 
 import Form from "../form/CategoryForm";
 
 import { CategorySchema } from "../../../helpers/validation";
 
 const Create = ({ navigate }) => {
-  const dispatch = useDispatch();
-
   const initialValues = {
     name: ""
   };
 
-  const handleSubmit = values => {
-    console.log(values.name);
-    dispatch(createCategory(navigate, { name: values.name }));
+  const handleSubmit = async values => {
+    // create new category
+    try {
+      await baseUrl.post("/categories", { name: values.name });
+      navigate(`/dashboard/categories`);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

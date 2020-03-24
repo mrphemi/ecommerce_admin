@@ -1,19 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "@reach/router";
-import { useDispatch, useSelector } from "react-redux";
 
-import { getCategories } from "../../../actions/categories/categoriesActions";
+import baseUrl from "../../../helpers/api";
 
+import Spinner from "../../../components/spinner/Spinner";
 import ListItem from "./ListItem";
 import { ReactComponent as Add } from "../../../assets/add.svg";
 
 const List = ({ navigate }) => {
-  const dispatch = useDispatch();
-  const categories = useSelector(state => state.categories.list);
+  const [categories, setCategories] = useState([]);
+
+  const getCategories = async () => {
+    try {
+      const categories = await baseUrl.get("/categories");
+      const categoriesList = categories.data.categories;
+      setCategories(categoriesList);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    dispatch(getCategories());
-  }, [dispatch]);
+    getCategories();
+  }, []);
+
+  if (!categories.length) {
+    return <Spinner />;
+  }
 
   return (
     <>
