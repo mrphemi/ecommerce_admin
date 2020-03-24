@@ -5,8 +5,8 @@ import Nav from "../../components/dashboard/Nav";
 // products
 import Products from "../products";
 import ProductsList from "../products/list/List";
-import CreateProduct from "../products/create/Create";
-import EditProduct from "../products/edit/Edit";
+import CreateProduct from "../products/create";
+import EditProduct from "../products/edit";
 import ProductInfo from "../products/product/Product";
 // customers
 import Customers from "../customers";
@@ -15,8 +15,8 @@ import CustomerDetails from "../customers/customer/Details";
 // categories
 import Categories from "../categories";
 import CategoriesList from "../categories/list/List";
-import CreateCategory from "../categories/create/Create";
-import EditCategory from "../categories/edit/Edit";
+import CreateCategory from "../categories/create";
+import EditCategory from "../categories/edit";
 
 const Dashboard = () => {
   return (
