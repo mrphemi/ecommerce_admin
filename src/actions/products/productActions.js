@@ -1,6 +1,6 @@
 import baseUrl from "../../helpers/api";
 
-import { GET_PRODUCTS, GET_SINGLE_PRODUCTS } from "../types";
+import { GET_PRODUCTS, GET_SINGLE_PRODUCT } from "../types";
 
 // Get product list
 export const getProducts = () => async dispatch => {
@@ -22,7 +22,7 @@ export const getSingleProduct = productId => async dispatch => {
     const product = await baseUrl.get(`/products/${productId}`);
     const productDetails = product.data.product;
     dispatch({
-      type: GET_SINGLE_PRODUCTS,
+      type: GET_SINGLE_PRODUCT,
       payload: productDetails
     });
   } catch (error) {
@@ -33,7 +33,7 @@ export const getSingleProduct = productId => async dispatch => {
 // clean single product when product info page un-mounts
 export const cleanSingleProduct = () => dispatch => {
   dispatch({
-    type: GET_SINGLE_PRODUCTS,
+    type: GET_SINGLE_PRODUCT,
     payload: {}
   });
 };

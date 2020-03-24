@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, GET_SINGLE_PRODUCTS } from "../actions/types";
+import { GET_PRODUCTS, GET_SINGLE_PRODUCT } from "../actions/types";
 
 const INITIAL_STATE = {
   productsList: [],
@@ -13,7 +13,7 @@ const productsReducer = (state = INITIAL_STATE, action) => {
         ...state,
         productsList: payload
       };
-    case GET_SINGLE_PRODUCTS:
+    case GET_SINGLE_PRODUCT:
       return {
         ...state,
         product: payload

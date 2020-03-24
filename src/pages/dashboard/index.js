@@ -4,17 +4,17 @@ import { Router } from "@reach/router";
 import Nav from "../../components/dashboard/Nav";
 // products
 import Products from "../products";
-import ProductsList from "../products/list/List";
+import ProductsList from "../products/list";
 import CreateProduct from "../products/create";
 import EditProduct from "../products/edit";
-import ProductInfo from "../products/product/Product";
+import ProductInfo from "../products/product";
 // customers
 import Customers from "../customers";
-import CustomersList from "../customers/list/List";
-import CustomerDetails from "../customers/customer/Details";
+import CustomersList from "../customers/list";
+import CustomerDetails from "../customers/customer";
 // categories
 import Categories from "../categories";
-import CategoriesList from "../categories/list/List";
+import CategoriesList from "../categories/list";
 import CreateCategory from "../categories/create";
 import EditCategory from "../categories/edit";
 
