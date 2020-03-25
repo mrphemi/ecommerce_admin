@@ -98,7 +98,7 @@ const LoginForm = ({ form }) => {
           Already have an account?{" "}
           <Link
             className="align-baseline font-bold text-blue-500 hover:text-blue-800"
-            to="/"
+            to="/login"
           >
             Login
           </Link>

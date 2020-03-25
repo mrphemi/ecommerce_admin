@@ -13,21 +13,21 @@ import Dashboard from "./pages/dashboard";
 import "./styles/app.css";
 
 // Check for token to keep user logged in
-// if (localStorage.authToken) {
-//   // Set auth token header auth
-//   const token = localStorage.authToken;
-//   setAuthToken(token);
-//   // Decode token and get user info and exp
-//   const decoded = decode(token);
-//   // Set user and isAuthenticated
-//   store.dispatch(setCurrentUser(decoded));
-//   // Check for expired token
-//   const currentTime = Date.now() / 1000; // to get in milliseconds
-//   if (decoded.exp < currentTime) {
-//     // Logout user
-//     store.dispatch(logout(navigate));
-//   }
-// }
+if (localStorage.authToken) {
+  // Set auth token header auth
+  const token = localStorage.authToken;
+  setAuthToken(token);
+  // Decode token and get user info and exp
+  const decoded = decode(token);
+  // Set user and isAuthenticated
+  store.dispatch(setCurrentUser(decoded));
+  // Check for expired token
+  const currentTime = Date.now() / 1000; // to get in milliseconds
+  if (decoded.exp < currentTime) {
+    // Logout user
+    store.dispatch(logout(navigate));
+  }
+}
 
 function App() {
   return (
