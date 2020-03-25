@@ -1,5 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import swal from "@sweetalert/with-react";
+
+import baseUrl from "../../../helpers/api";
 
 import { ReactComponent as Trash } from "../../../assets/trash.svg";
 import { ReactComponent as Edit } from "../../../assets/edit.svg";
@@ -8,6 +11,30 @@ import { ReactComponent as View } from "../../../assets/view.svg";
 const ListItem = ({ product, navigate }) => {
   const edit = productId => {
     navigate(`edit/${productId}`);
+  };
+
+  const deleteProduct = async productId => {
+    const confirmDeletion = await swal({
+      title: "Hold on?",
+      text: "Are you sure you want to proceed",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true
+    });
+
+    if (confirmDeletion) {
+      try {
+        await baseUrl.delete(`/products/${productId}`);
+        swal("Product successfully deleted", {
+          icon: "success"
+        });
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   const viewInfo = productId => {
@@ -37,6 +64,7 @@ const ListItem = ({ product, navigate }) => {
           <Trash
             className="ml-6 w-5 h-5 lg:w-4 lg:h-4 lg:mr-4 text-gray-700 hover:text-red-500 cursor-pointer"
             title="Delete customer"
+            onClick={() => deleteProduct(product._id)}
           />
         </div>
       </td>

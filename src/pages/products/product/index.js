@@ -1,4 +1,7 @@
 import React from "react";
+import swal from "@sweetalert/with-react";
+
+import baseUrl from "../../../helpers/api";
 
 import useGetProduct from "../../../hooks/useGetProduct";
 
@@ -12,6 +15,30 @@ const Product = ({ productId, navigate }) => {
 
   // navigate to product edit page
   const edit = id => navigate(`/dashboard/products/edit/${id}`);
+
+  const deleteProduct = async productId => {
+    const confirmDeletion = await swal({
+      title: "Hold on?",
+      text: "Are you sure you want to proceed",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true
+    });
+
+    if (confirmDeletion) {
+      try {
+        await baseUrl.delete(`/products/${productId}`);
+        swal("Product successfully deleted", {
+          icon: "success"
+        });
+        setTimeout(() => {
+          navigate("/dashboard/products");
+        }, 500);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
 
   const { image, name, quantity, price, description } = product;
 
@@ -39,7 +66,10 @@ const Product = ({ productId, navigate }) => {
             </p>
           </div>
           <div className="buttons flex justify-center lg:justify-start">
-            <button className="rounded py-2 px-4 mr-5 capitalize text-white bg-red-500 hover:bg-red-700 outline-none flex text-sm sm:text-base">
+            <button
+              className="rounded py-2 px-4 mr-5 capitalize text-white bg-red-500 hover:bg-red-700 outline-none flex text-sm sm:text-base"
+              onClick={() => deleteProduct(productId)}
+            >
               delete product
               <Trash className="w-4 ml-2" />
             </button>

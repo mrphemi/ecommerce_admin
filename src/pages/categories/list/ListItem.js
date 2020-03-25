@@ -23,10 +23,12 @@ const ListItem = ({ category, navigate }) => {
     if (confirmDeletion) {
       try {
         await baseUrl.delete(`/categories/${categoryId}`);
-        window.location.reload();
         swal("Category successfully deleted", {
           icon: "success"
         });
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
       } catch (error) {
         console.log(error);
       }
