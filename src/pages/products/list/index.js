@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "@reach/router";
-import { useSelector, useDispatch } from "react-redux";
 
-import { getProducts } from "../../../actions/products/productActions";
+import baseUrl from "../../../helpers/api";
 
 import { ReactComponent as Add } from "../../../assets/add.svg";
 
@@ -10,11 +9,22 @@ import ListItem from "./ListItem";
 import Spinner from "../../../components/spinner/Spinner";
 
 const ProductsList = ({ navigate }) => {
-  const dispatch = useDispatch();
-  const products = useSelector(state => state.products.productsList);
+  const [products, setProducts] = useState([]);
+
+  // Get product list
+  const getProducts = async () => {
+    try {
+      const products = await baseUrl.get("/products");
+      const productsList = products.data.products;
+      setProducts(productsList);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
+    getProducts();
+  }, []);
 
   if (!products.length) {
     return <Spinner />;

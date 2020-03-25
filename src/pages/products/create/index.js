@@ -1,17 +1,14 @@
 import React from "react";
 import { Formik } from "formik";
-import { useDispatch } from "react-redux";
 import { navigate } from "@reach/router";
 
-import { createProduct } from "../../../actions/products/productActions";
+import baseUrl from "../../../helpers/api";
 
 import { CreateProductSchema } from "../../../helpers/validation";
 
 import Form from "../form/ProductForm";
 
 const CreateProduct = () => {
-  const dispatch = useDispatch();
-
   const initialValues = {
     name: "",
     category: "",
@@ -19,6 +16,17 @@ const CreateProduct = () => {
     price: "",
     quantity: 1,
     product_img: null
+  };
+
+  // Create new product
+  const createProduct = async formData => {
+    try {
+      const newProduct = await baseUrl.post("/products", formData);
+      const { id } = newProduct.data;
+      navigate(`/dashboard/products/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleSubmit = values => {
@@ -30,7 +38,7 @@ const CreateProduct = () => {
     form.append("quantity", values.quantity);
     form.append("product_img", values.product_img);
 
-    dispatch(createProduct(navigate, form));
+    createProduct(form);
   };
 
   return (

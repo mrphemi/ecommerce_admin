@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Form, Field } from "formik";
+
+import baseUrl from "../../../helpers/api";
 
 import ErrorMsg from "../../../components/form/ErrorMsg";
 import FileInput from "./FileInput";
 import Description from "./Description";
 
 const ProductForm = ({ form, role }) => {
+  const [categories, setCategories] = useState([]);
+
+  const getCategories = async () => {
+    try {
+      const categories = await baseUrl.get("/categories");
+      const categoriesList = categories.data.categories;
+      setCategories(categoriesList);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, []);
   return (
     <Form onSubmit={form.handleSubmit}>
       <div className="flex flex-wrap -mx-3 mb-6">
@@ -43,9 +60,9 @@ const ProductForm = ({ form, role }) => {
               id="category"
             >
               <option value="">--Please choose a category--</option>
-              <option value="5e36db38a3ad140023e05e01">Jackets</option>
-              <option value="5e36dc2da3ad140023e05e02">Hats</option>
-              <option value="5e36dca8a3ad140023e05e03">Shoes and Kicks</option>
+              {categories.map(category => (
+                <option value={category._id}>{category.name}</option>
+              ))}
             </Field>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg

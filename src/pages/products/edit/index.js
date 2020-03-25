@@ -1,23 +1,25 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Formik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
 
-import {
-  getSingleProduct,
-  editProduct
-} from "../../../actions/products/productActions";
+import baseUrl from "../../../helpers/api";
+import useGetProduct from "../../../hooks/useGetProduct";
 
 import { EditProductSchema } from "../../../helpers/validation";
 
 import Form from "../form/ProductForm";
 
 const EditProduct = ({ navigate, productId }) => {
-  const dispatch = useDispatch();
-  const productInfo = useSelector(state => state.products.product);
+  const productInfo = useGetProduct(productId);
 
-  useEffect(() => {
-    dispatch(getSingleProduct(productId));
-  }, [dispatch, productId]);
+  // Edit product info.
+  const editProduct = async (productId, formData) => {
+    try {
+      await baseUrl.put(`/products/${productId}`, formData);
+      navigate(`/dashboard/products/${productId}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const initialValues = Object.keys(productInfo).length
     ? {
@@ -46,7 +48,7 @@ const EditProduct = ({ navigate, productId }) => {
     form.append("quantity", values.quantity);
     form.append("product_img", values.product_img);
 
-    dispatch(editProduct(navigate, productId, form));
+    editProduct(productId, form);
   };
 
   return (

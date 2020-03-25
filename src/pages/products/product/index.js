@@ -1,10 +1,6 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 
-import {
-  getSingleProduct,
-  cleanSingleProduct
-} from "../../../actions/products/productActions";
+import useGetProduct from "../../../hooks/useGetProduct";
 
 import Spinner from "../../../components/spinner/Spinner";
 
@@ -12,15 +8,7 @@ import { ReactComponent as Trash } from "../../../assets/trash.svg";
 import { ReactComponent as Edit } from "../../../assets/edit.svg";
 
 const Product = ({ productId, navigate }) => {
-  const dispatch = useDispatch();
-  const product = useSelector(state => state.products.product);
-
-  useEffect(() => {
-    dispatch(getSingleProduct(productId));
-    return () => {
-      dispatch(cleanSingleProduct());
-    };
-  }, [dispatch, productId]);
+  const product = useGetProduct(productId);
 
   // navigate to product edit page
   const edit = id => navigate(`/dashboard/products/edit/${id}`);
