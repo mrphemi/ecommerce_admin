@@ -61,7 +61,9 @@ const ProductForm = ({ form, role }) => {
             >
               <option value="">--Please choose a category--</option>
               {categories.map(category => (
-                <option value={category._id}>{category.name}</option>
+                <option key={category._id} value={category._id}>
+                  {category.name}
+                </option>
               ))}
             </Field>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">

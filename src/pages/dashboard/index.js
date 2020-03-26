@@ -22,7 +22,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <Nav />
-      <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-5 md:py-10">
+      <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-5 md:py-10 xl:py-16">
         <Router>
           <Products path="products">
             <ProductsList path="/" />

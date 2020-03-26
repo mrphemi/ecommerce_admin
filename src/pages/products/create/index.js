@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik } from "formik";
 import { navigate } from "@reach/router";
+import ButterToast, { Cinnamon } from "butter-toast";
 
 import baseUrl from "../../../helpers/api";
 
@@ -23,7 +24,18 @@ const CreateProduct = () => {
     try {
       const newProduct = await baseUrl.post("/products", formData);
       const { id } = newProduct.data;
-      navigate(`/dashboard/products/${id}`);
+      ButterToast.raise({
+        content: (
+          <Cinnamon.Crisp
+            scheme={Cinnamon.Crunch.SCHEME_GREEN}
+            content={() => "Product Created Successfully"}
+            title="Success"
+          />
+        )
+      });
+      setTimeout(() => {
+        navigate(`/dashboard/products/${id}`);
+      }, 500);
     } catch (error) {
       console.log(error);
     }

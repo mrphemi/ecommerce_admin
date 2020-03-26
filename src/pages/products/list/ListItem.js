@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import swal from "@sweetalert/with-react";
+import ButterToast, { Cinnamon } from "butter-toast";
 
 import baseUrl from "../../../helpers/api";
 
@@ -25,8 +26,14 @@ const ListItem = ({ product, navigate }) => {
     if (confirmDeletion) {
       try {
         await baseUrl.delete(`/products/${productId}`);
-        swal("Product successfully deleted", {
-          icon: "success"
+        ButterToast.raise({
+          content: (
+            <Cinnamon.Crisp
+              scheme={Cinnamon.Crunch.SCHEME_GREEN}
+              content={() => "Product Deleted Successfully"}
+              title="Success"
+            />
+          )
         });
         setTimeout(() => {
           window.location.reload();

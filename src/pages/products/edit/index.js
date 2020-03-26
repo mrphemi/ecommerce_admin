@@ -1,5 +1,6 @@
 import React from "react";
 import { Formik } from "formik";
+import ButterToast, { Cinnamon } from "butter-toast";
 
 import baseUrl from "../../../helpers/api";
 import useGetProduct from "../../../hooks/useGetProduct";
@@ -15,7 +16,18 @@ const EditProduct = ({ navigate, productId }) => {
   const editProduct = async (productId, formData) => {
     try {
       await baseUrl.put(`/products/${productId}`, formData);
-      navigate(`/dashboard/products/${productId}`);
+      ButterToast.raise({
+        content: (
+          <Cinnamon.Crisp
+            scheme={Cinnamon.Crunch.SCHEME_GREEN}
+            content={() => "Product Updated Successfully"}
+            title="Success"
+          />
+        )
+      });
+      setTimeout(() => {
+        navigate(`/dashboard/products/${productId}`);
+      }, 500);
     } catch (error) {
       console.log(error);
     }
