@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Formik } from "formik";
+import ButterToast, { Cinnamon } from "butter-toast";
 
 import baseUrl from "../../../helpers/api";
 
@@ -24,17 +25,32 @@ const Edit = ({ categoryId, navigate }) => {
     }
   };
 
+  const updateCategory = async name => {
+    try {
+      await baseUrl.put(`/categories/${categoryId}`, { name });
+      ButterToast.raise({
+        content: (
+          <Cinnamon.Crisp
+            scheme={Cinnamon.Crunch.SCHEME_GREEN}
+            content={() => "Category Updated Successfully"}
+            title="Success"
+          />
+        )
+      });
+      setTimeout(() => {
+        navigate(`/dashboard/categories`);
+      }, 500);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getSingleCategory(categoryId);
   }, []);
 
   const handleSubmit = async values => {
-    try {
-      await baseUrl.put(`/categories/${categoryId}`, { name: values.name });
-      navigate(`/dashboard/categories`);
-    } catch (error) {
-      console.log(error);
-    }
+    updateCategory(values.name);
   };
 
   return (

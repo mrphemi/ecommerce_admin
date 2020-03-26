@@ -1,5 +1,6 @@
 import React from "react";
 import swal from "@sweetalert/with-react";
+import ButterToast, { Cinnamon } from "butter-toast";
 
 import baseUrl from "../../../helpers/api";
 
@@ -23,8 +24,14 @@ const ListItem = ({ category, navigate }) => {
     if (confirmDeletion) {
       try {
         await baseUrl.delete(`/categories/${categoryId}`);
-        swal("Category successfully deleted", {
-          icon: "success"
+        ButterToast.raise({
+          content: (
+            <Cinnamon.Crisp
+              scheme={Cinnamon.Crunch.SCHEME_GREEN}
+              content={() => "Category Deleted Successfully"}
+              title="Success"
+            />
+          )
         });
         setTimeout(() => {
           window.location.reload();
