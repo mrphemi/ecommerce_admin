@@ -2,19 +2,17 @@ import React from "react";
 
 import { ReactComponent as Trash } from "../../../assets/trash.svg";
 import { ReactComponent as View } from "../../../assets/view.svg";
-import customers from "./customers";
 
 const ListItem = ({ customer, navigate }) => {
   const viewInfo = customerId => {
     navigate(`info/${customerId}`);
   };
 
-  if (!customers.length) {
-    return <p className="text-center">Loading...</p>;
-  }
   return (
     <tr className="shadow-sm shadow-inner">
-      <td className="w-1/3 px-4 py-3">{customer.name}</td>
+      <td className="w-1/3 px-4 py-3">
+        {customer.first_name} {customer.last_name}
+      </td>
       <td className="w-1/3 px-4 py-3">{customer.email}</td>
       <td className="w-1/4 px-4 py-3 capitalize">
         {customer.phone ? customer.phone : "not provided"}
@@ -28,7 +26,7 @@ const ListItem = ({ customer, navigate }) => {
           <View
             className="ml-4 w-5 h-5 lg:w-4 lg:h-4 text-gray-700 hover:text-blue-500 cursor-pointer"
             title="View customer details"
-            onClick={() => viewInfo(customer.id)}
+            onClick={() => viewInfo(customer._id)}
           />
         </div>
       </td>

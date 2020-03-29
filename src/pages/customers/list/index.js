@@ -1,9 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-import customers from "./customers";
+import baseUrl from "../../../helpers/api";
+
+import Spinner from "../../../components/spinner/Spinner";
 import ListItem from "./ListItem";
 
 const List = ({ navigate }) => {
+  const [customers, setCustomers] = useState([]);
+
+  const getCustomers = async () => {
+    try {
+      const customers = await baseUrl.get("/customers");
+      const list = customers.data.customers;
+      setCustomers(list);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getCustomers();
+  }, []);
+
+  if (!customers.length) {
+    return <Spinner />;
+  }
+
   return (
     <div className="w-full overflow-x-auto">
       <table className="table-fixed mx-auto">
@@ -20,7 +42,7 @@ const List = ({ navigate }) => {
             <ListItem
               customer={customer}
               navigate={navigate}
-              key={customer.id}
+              key={customer._id}
             />
           ))}
         </tbody>
