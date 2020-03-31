@@ -1,19 +1,29 @@
 import React, { useState, useEffect } from "react";
 
 import baseUrl from "../../../helpers/api";
+import useLoadingStatus from "../../../hooks/useLoadingStatus";
 
 import Spinner from "../../../components/spinner/Spinner";
 import ListItem from "./ListItem";
 
 const List = ({ navigate }) => {
   const [customers, setCustomers] = useState([]);
+  const {
+    isLoading,
+    loadingInProgress,
+    successLoading,
+    errorLoading
+  } = useLoadingStatus();
 
   const getCustomers = async () => {
     try {
+      loadingInProgress();
       const customers = await baseUrl.get("/customers");
       const list = customers.data.customers;
       setCustomers(list);
+      successLoading();
     } catch (error) {
+      errorLoading();
       console.log(error);
     }
   };
@@ -22,7 +32,7 @@ const List = ({ navigate }) => {
     getCustomers();
   }, []);
 
-  if (!customers.length) {
+  if (isLoading) {
     return <Spinner />;
   }
 

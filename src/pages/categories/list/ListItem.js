@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import swal from "@sweetalert/with-react";
 import ButterToast, { Cinnamon } from "butter-toast";
 
@@ -59,6 +60,11 @@ const ListItem = ({ category, navigate }) => {
       </div>
     </div>
   );
+};
+
+ListItem.propTypes = {
+  category: PropTypes.object.isRequired,
+  navigate: PropTypes.func.isRequired
 };
 
 export default ListItem;

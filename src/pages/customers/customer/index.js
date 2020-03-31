@@ -1,19 +1,43 @@
 import React, { useState, useEffect } from "react";
 
+import ButterToast, { Cinnamon } from "butter-toast";
+
 import baseUrl from "../../../helpers/api";
+import useLoadingStatus from "../../../hooks/useLoadingStatus";
 
 import Spinner from "../../../components/spinner/Spinner";
 
 const Details = ({ customerId }) => {
   const [customer, setCustomer] = useState({});
+  const {
+    isLoading,
+    loadingInProgress,
+    successLoading,
+    errorLoading
+  } = useLoadingStatus();
 
   const getCustomer = async customerId => {
     try {
+      loadingInProgress();
       const customer = await baseUrl.get(`/customers/${customerId}`);
       const info = customer.data.customer;
       setCustomer(info);
+      successLoading();
     } catch (error) {
-      console.log(error);
+      errorLoading();
+      if (error.response) {
+        ButterToast.raise({
+          content: (
+            <Cinnamon.Crisp
+              scheme={Cinnamon.Crisp.SCHEME_RED}
+              content={() => error.response.data.error}
+              title={error.response.status}
+            />
+          )
+        });
+        // Go back to customers list
+        window.history.back();
+      }
     }
   };
 
@@ -21,7 +45,7 @@ const Details = ({ customerId }) => {
     getCustomer(customerId);
   }, []);
 
-  if (!Object.keys(customer).length) {
+  if (isLoading) {
     return <Spinner />;
   }
 

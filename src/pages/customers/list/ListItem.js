@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { ReactComponent as Trash } from "../../../assets/trash.svg";
 import { ReactComponent as View } from "../../../assets/view.svg";
@@ -32,6 +33,11 @@ const ListItem = ({ customer, navigate }) => {
       </td>
     </tr>
   );
+};
+
+ListItem.propTypes = {
+  customer: PropTypes.object.isRequired,
+  navigate: PropTypes.func.isRequired
 };
 
 export default ListItem;
