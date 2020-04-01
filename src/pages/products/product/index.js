@@ -1,9 +1,9 @@
 import React from "react";
 import swal from "@sweetalert/with-react";
-import ButterToast, { Cinnamon } from "butter-toast";
 
 import baseUrl from "../../../helpers/api";
-
+import handleRequestError from "../../../helpers/handleRequestError";
+import handleHttpSuccess from "../../../helpers/handleRequestSuccess";
 import useGetProduct from "../../../hooks/useGetProduct";
 
 import Spinner from "../../../components/spinner/Spinner";
@@ -12,7 +12,7 @@ import { ReactComponent as Trash } from "../../../assets/trash.svg";
 import { ReactComponent as Edit } from "../../../assets/edit.svg";
 
 const Product = ({ productId, navigate }) => {
-  const product = useGetProduct(productId);
+  const { product, isLoading } = useGetProduct(productId);
 
   // navigate to product edit page
   const edit = id => navigate(`/dashboard/products/edit/${id}`);
@@ -29,27 +29,20 @@ const Product = ({ productId, navigate }) => {
     if (confirmDeletion) {
       try {
         await baseUrl.delete(`/products/${productId}`);
-        ButterToast.raise({
-          content: (
-            <Cinnamon.Crisp
-              scheme={Cinnamon.Crunch.SCHEME_GREEN}
-              content={() => "Product Deleted Successfully"}
-              title="Success"
-            />
-          )
-        });
-        setTimeout(() => {
-          navigate("/dashboard/products");
-        }, 500);
+        handleHttpSuccess("Product Deleted Successfully", () =>
+          setTimeout(() => {
+            navigate("/dashboard/products");
+          }, 500)
+        );
       } catch (error) {
-        console.log(error);
+        handleRequestError(error, null);
       }
     }
   };
 
   const { image, name, quantity, price, description } = product;
 
-  if (!Object.keys(product).length) {
+  if (isLoading) {
     return <Spinner />;
   }
   return (

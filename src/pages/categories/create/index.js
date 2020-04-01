@@ -1,8 +1,9 @@
 import React from "react";
 import { Formik } from "formik";
-import ButterToast, { Cinnamon } from "butter-toast";
 
 import baseUrl from "../../../helpers/api";
+import handleRequestError from "../../../helpers/handleRequestError";
+import handleRequestSuccess from "../../../helpers/handleRequestSuccess";
 
 import Form from "../form/CategoryForm";
 
@@ -17,20 +18,13 @@ const Create = ({ navigate }) => {
   const createCategory = async name => {
     try {
       await baseUrl.post("/categories", { name });
-      ButterToast.raise({
-        content: (
-          <Cinnamon.Crisp
-            scheme={Cinnamon.Crunch.SCHEME_GREEN}
-            content={() => "Category Created Successfully"}
-            title="Success"
-          />
-        )
-      });
-      setTimeout(() => {
-        navigate(`/dashboard/categories`);
-      }, 500);
+      handleRequestSuccess("Category Created Successfully", () =>
+        setTimeout(() => {
+          navigate(`/dashboard/categories`);
+        }, 500)
+      );
     } catch (error) {
-      console.log(error);
+      handleRequestError(error, null);
     }
   };
 

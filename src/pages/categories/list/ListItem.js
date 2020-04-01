@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import swal from "@sweetalert/with-react";
-import ButterToast, { Cinnamon } from "butter-toast";
 
 import baseUrl from "../../../helpers/api";
+import handleRequestSuccess from "../../../helpers/handleRequestSuccess";
+import handleRequestError from "../../../helpers/handleRequestError";
 
 import { ReactComponent as Trash } from "../../../assets/trash.svg";
 import { ReactComponent as Edit } from "../../../assets/edit.svg";
@@ -25,20 +26,13 @@ const ListItem = ({ category, navigate }) => {
     if (confirmDeletion) {
       try {
         await baseUrl.delete(`/categories/${categoryId}`);
-        ButterToast.raise({
-          content: (
-            <Cinnamon.Crisp
-              scheme={Cinnamon.Crunch.SCHEME_GREEN}
-              content={() => "Category Deleted Successfully"}
-              title="Success"
-            />
-          )
-        });
-        setTimeout(() => {
-          window.location.reload();
-        }, 500);
+        handleRequestSuccess("Category Deleted Successfully", () =>
+          setTimeout(() => {
+            window.location.reload();
+          }, 500)
+        );
       } catch (error) {
-        console.log(error);
+        handleRequestError(error, null);
       }
     }
   };

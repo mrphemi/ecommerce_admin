@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "@reach/router";
 
 import baseUrl from "../../../helpers/api";
+import handleRequestError from "../../../helpers/handleRequestError";
+import useLoadingStatus from "../../../hooks/useLoadingStatus";
 
 import Spinner from "../../../components/spinner/Spinner";
 import ListItem from "./ListItem";
@@ -9,14 +11,23 @@ import { ReactComponent as Add } from "../../../assets/add.svg";
 
 const List = ({ navigate }) => {
   const [categories, setCategories] = useState([]);
+  const {
+    isLoading,
+    successLoading,
+    errorLoading,
+    loadingInProgress
+  } = useLoadingStatus();
 
   const getCategories = async () => {
     try {
+      loadingInProgress();
       const categories = await baseUrl.get("/categories");
       const categoriesList = categories.data.categories;
       setCategories(categoriesList);
+      successLoading();
     } catch (error) {
-      console.log(error);
+      errorLoading();
+      handleRequestError(error, null);
     }
   };
 
@@ -24,7 +35,7 @@ const List = ({ navigate }) => {
     getCategories();
   }, []);
 
-  if (!categories.length) {
+  if (isLoading) {
     return <Spinner />;
   }
 

@@ -1,35 +1,30 @@
 import React from "react";
 import { Formik } from "formik";
-import ButterToast, { Cinnamon } from "butter-toast";
 
 import baseUrl from "../../../helpers/api";
+import handleHttpSuccess from "../../../helpers/handleRequestSuccess";
+import handleHttpError from "../../../helpers/handleRequestError";
 import useGetProduct from "../../../hooks/useGetProduct";
 
 import { EditProductSchema } from "../../../helpers/validation";
 
 import Form from "../form/ProductForm";
+import Spinner from "../../../components/spinner/Spinner";
 
 const EditProduct = ({ navigate, productId }) => {
-  const productInfo = useGetProduct(productId);
+  const { product: productInfo, isLoading } = useGetProduct(productId);
 
   // Edit product info.
   const editProduct = async (productId, formData) => {
     try {
       await baseUrl.put(`/products/${productId}`, formData);
-      ButterToast.raise({
-        content: (
-          <Cinnamon.Crisp
-            scheme={Cinnamon.Crunch.SCHEME_GREEN}
-            content={() => "Product Updated Successfully"}
-            title="Success"
-          />
-        )
-      });
-      setTimeout(() => {
-        navigate(`/dashboard/products/${productId}`);
-      }, 500);
+      handleHttpSuccess("Product Updated Successfully", () =>
+        setTimeout(() => {
+          navigate(`/dashboard/products/${productId}`);
+        }, 500)
+      );
     } catch (error) {
-      console.log(error);
+      handleHttpError(error, null);
     }
   };
 
@@ -62,6 +57,8 @@ const EditProduct = ({ navigate, productId }) => {
 
     editProduct(productId, form);
   };
+
+  if (isLoading) return <Spinner />;
 
   return (
     <>

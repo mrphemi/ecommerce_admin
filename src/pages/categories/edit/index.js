@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Formik } from "formik";
-import ButterToast, { Cinnamon } from "butter-toast";
 
 import baseUrl from "../../../helpers/api";
+import handleRequestError from "../../../helpers/handleRequestError";
+import handleRequestSuccess from "../../../helpers/handleRequestSuccess";
+import useLoadingStatus from "../../../hooks/useLoadingStatus";
 
 import { CategorySchema } from "../../../helpers/validation";
 
 import Form from "../form/CategoryForm";
+import Spinner from "../../../components/spinner/Spinner";
 
 const Edit = ({ categoryId, navigate }) => {
   const [categoryName, setCategoryName] = useState("");
+  const {
+    isLoading,
+    loadingInProgress,
+    successLoading,
+    errorLoading
+  } = useLoadingStatus();
 
   let initialValues = {
     name: categoryName
@@ -17,31 +26,31 @@ const Edit = ({ categoryId, navigate }) => {
 
   const getSingleCategory = async categoryId => {
     try {
+      loadingInProgress();
       const category = await baseUrl.get(`/categories/${categoryId}`);
       const name = category.data.category.name;
       setCategoryName(name);
+      successLoading();
     } catch (error) {
-      console.log(error);
+      errorLoading();
+      handleRequestError(error, () =>
+        setTimeout(() => {
+          window.history.back();
+        }, 500)
+      );
     }
   };
 
   const updateCategory = async name => {
     try {
       await baseUrl.put(`/categories/${categoryId}`, { name });
-      ButterToast.raise({
-        content: (
-          <Cinnamon.Crisp
-            scheme={Cinnamon.Crunch.SCHEME_GREEN}
-            content={() => "Category Updated Successfully"}
-            title="Success"
-          />
-        )
-      });
-      setTimeout(() => {
-        navigate(`/dashboard/categories`);
-      }, 500);
+      handleRequestSuccess("Category Updated Successfully", () =>
+        setTimeout(() => {
+          navigate(`/dashboard/categories`);
+        }, 500)
+      );
     } catch (error) {
-      console.log(error);
+      handleRequestError(error, null);
     }
   };
 
@@ -52,6 +61,8 @@ const Edit = ({ categoryId, navigate }) => {
   const handleSubmit = async values => {
     updateCategory(values.name);
   };
+
+  if (isLoading) return <Spinner />;
 
   return (
     <div>

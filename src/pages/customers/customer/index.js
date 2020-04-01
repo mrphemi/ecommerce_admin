@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-import ButterToast, { Cinnamon } from "butter-toast";
-
 import baseUrl from "../../../helpers/api";
+import handleRequestError from "../../../helpers/handleRequestError";
 import useLoadingStatus from "../../../hooks/useLoadingStatus";
 
 import Spinner from "../../../components/spinner/Spinner";
@@ -25,19 +24,12 @@ const Details = ({ customerId }) => {
       successLoading();
     } catch (error) {
       errorLoading();
-      if (error.response) {
-        ButterToast.raise({
-          content: (
-            <Cinnamon.Crisp
-              scheme={Cinnamon.Crisp.SCHEME_RED}
-              content={() => error.response.data.error}
-              title={error.response.status}
-            />
-          )
-        });
-        // Go back to customers list
-        window.history.back();
-      }
+      handleRequestError(error, () => {
+        setTimeout(() => {
+          // Go back to customers list
+          window.history.back();
+        }, 500);
+      });
     }
   };
 

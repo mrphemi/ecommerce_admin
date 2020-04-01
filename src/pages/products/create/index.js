@@ -1,9 +1,10 @@
 import React from "react";
 import { Formik } from "formik";
 import { navigate } from "@reach/router";
-import ButterToast, { Cinnamon } from "butter-toast";
 
 import baseUrl from "../../../helpers/api";
+import handleHttpSuccess from "../../../helpers/handleRequestSuccess";
+import handleHttpError from "../../../helpers/handleRequestError";
 
 import { CreateProductSchema } from "../../../helpers/validation";
 
@@ -24,20 +25,13 @@ const CreateProduct = () => {
     try {
       const newProduct = await baseUrl.post("/products", formData);
       const { id } = newProduct.data;
-      ButterToast.raise({
-        content: (
-          <Cinnamon.Crisp
-            scheme={Cinnamon.Crunch.SCHEME_GREEN}
-            content={() => "Product Created Successfully"}
-            title="Success"
-          />
-        )
-      });
-      setTimeout(() => {
-        navigate(`/dashboard/products/${id}`);
-      }, 500);
+      handleHttpSuccess("Product Created Successfully", () =>
+        setTimeout(() => {
+          navigate(`/dashboard/products/${id}`);
+        }, 500)
+      );
     } catch (error) {
-      console.log(error);
+      handleHttpError(error, null);
     }
   };
 

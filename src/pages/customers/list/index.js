@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import baseUrl from "../../../helpers/api";
+import handleRequestError from "../../../helpers/handleRequestError";
 import useLoadingStatus from "../../../hooks/useLoadingStatus";
 
 import Spinner from "../../../components/spinner/Spinner";
@@ -24,7 +25,7 @@ const List = ({ navigate }) => {
       successLoading();
     } catch (error) {
       errorLoading();
-      console.log(error);
+      handleRequestError(error, null);
     }
   };
 
