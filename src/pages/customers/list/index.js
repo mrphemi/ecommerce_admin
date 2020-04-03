@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import baseUrl from "../../../helpers/api";
 import handleRequestError from "../../../helpers/handleRequestError";
-import useLoadingStatus from "../../../hooks/useLoadingStatus";
+import useRequestStatus from "../../../hooks/useRequestStatus";
 
 import Spinner from "../../../components/spinner/Spinner";
 import ListItem from "./ListItem";
@@ -11,20 +11,20 @@ const List = ({ navigate }) => {
   const [customers, setCustomers] = useState([]);
   const {
     isLoading,
-    loadingInProgress,
-    successLoading,
-    errorLoading
-  } = useLoadingStatus();
+    requestInProgress,
+    requestError,
+    requestSuccess
+  } = useRequestStatus();
 
   const getCustomers = async () => {
     try {
-      loadingInProgress();
+      requestInProgress();
       const customers = await baseUrl.get("/customers");
       const list = customers.data.customers;
       setCustomers(list);
-      successLoading();
+      requestSuccess();
     } catch (error) {
-      errorLoading();
+      requestError();
       handleRequestError(error, null);
     }
   };

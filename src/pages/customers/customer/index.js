@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import baseUrl from "../../../helpers/api";
 import handleRequestError from "../../../helpers/handleRequestError";
-import useLoadingStatus from "../../../hooks/useLoadingStatus";
+import useRequestStatus from "../../../hooks/useRequestStatus";
 
 import Spinner from "../../../components/spinner/Spinner";
 
@@ -10,20 +10,20 @@ const Details = ({ customerId }) => {
   const [customer, setCustomer] = useState({});
   const {
     isLoading,
-    loadingInProgress,
-    successLoading,
-    errorLoading
-  } = useLoadingStatus();
+    requestInProgress,
+    requestError,
+    requestSuccess
+  } = useRequestStatus();
 
   const getCustomer = async customerId => {
     try {
-      loadingInProgress();
+      requestInProgress();
       const customer = await baseUrl.get(`/customers/${customerId}`);
       const info = customer.data.customer;
       setCustomer(info);
-      successLoading();
+      requestSuccess();
     } catch (error) {
-      errorLoading();
+      requestError();
       handleRequestError(error, () => {
         setTimeout(() => {
           // Go back to customers list

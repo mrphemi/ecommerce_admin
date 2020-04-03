@@ -4,7 +4,7 @@ import { Formik } from "formik";
 import baseUrl from "../../../helpers/api";
 import handleRequestError from "../../../helpers/handleRequestError";
 import handleRequestSuccess from "../../../helpers/handleRequestSuccess";
-import useLoadingStatus from "../../../hooks/useLoadingStatus";
+import useRequestStatus from "../../../hooks/useRequestStatus";
 
 import { CategorySchema } from "../../../helpers/validation";
 
@@ -15,10 +15,10 @@ const Edit = ({ categoryId, navigate }) => {
   const [categoryName, setCategoryName] = useState("");
   const {
     isLoading,
-    loadingInProgress,
-    successLoading,
-    errorLoading
-  } = useLoadingStatus();
+    requestInProgress,
+    requestError,
+    requestSuccess
+  } = useRequestStatus();
 
   let initialValues = {
     name: categoryName
@@ -26,13 +26,13 @@ const Edit = ({ categoryId, navigate }) => {
 
   const getSingleCategory = async categoryId => {
     try {
-      loadingInProgress();
+      requestInProgress();
       const category = await baseUrl.get(`/categories/${categoryId}`);
       const name = category.data.category.name;
       setCategoryName(name);
-      successLoading();
+      requestSuccess();
     } catch (error) {
-      errorLoading();
+      requestError();
       handleRequestError(error, () =>
         setTimeout(() => {
           window.history.back();

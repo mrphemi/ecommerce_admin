@@ -3,7 +3,7 @@ import { Link } from "@reach/router";
 
 import baseUrl from "../../../helpers/api";
 import handleRequestError from "../../../helpers/handleRequestError";
-import useLoadingStatus from "../../../hooks/useLoadingStatus";
+import useRequestStatus from "../../../hooks/useRequestStatus";
 
 import Spinner from "../../../components/spinner/Spinner";
 import ListItem from "./ListItem";
@@ -13,20 +13,20 @@ const List = ({ navigate }) => {
   const [categories, setCategories] = useState([]);
   const {
     isLoading,
-    successLoading,
-    errorLoading,
-    loadingInProgress
-  } = useLoadingStatus();
+    requestSuccess,
+    requestError,
+    requestInProgress
+  } = useRequestStatus();
 
   const getCategories = async () => {
     try {
-      loadingInProgress();
+      requestInProgress();
       const categories = await baseUrl.get("/categories");
       const categoriesList = categories.data.categories;
       setCategories(categoriesList);
-      successLoading();
+      requestSuccess();
     } catch (error) {
-      errorLoading();
+      requestError();
       handleRequestError(error, null);
     }
   };

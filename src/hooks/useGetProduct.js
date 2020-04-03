@@ -2,27 +2,27 @@ import { useEffect, useState } from "react";
 
 import baseUrl from "../helpers/api";
 import handleRequestError from "../helpers/handleRequestError";
-import useLoadingStatus from "./useLoadingStatus";
+import useRequestStatus from "./useRequestStatus";
 
 const useGetProduct = productId => {
   const [product, setProduct] = useState({});
   const {
     isLoading,
-    loadingInProgress,
-    successLoading,
-    errorLoading
-  } = useLoadingStatus();
+    requestInProgress,
+    requestSuccess,
+    requestError
+  } = useRequestStatus();
 
   // Get single product info.
   const getProduct = async () => {
     try {
-      loadingInProgress();
+      requestInProgress();
       const product = await baseUrl.get(`/products/${productId}`);
       const productDetails = product.data.product;
       setProduct(productDetails);
-      successLoading();
+      requestSuccess();
     } catch (error) {
-      errorLoading();
+      requestError();
       handleRequestError(error, () =>
         setTimeout(() => {
           window.history.back();
