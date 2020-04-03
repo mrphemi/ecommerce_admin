@@ -5,8 +5,9 @@ import baseUrl from "../../../helpers/api";
 import handleRequestError from "../../../helpers/handleRequestError";
 import useRequestStatus from "../../../hooks/useRequestStatus";
 
-import Spinner from "../../../components/spinner/Spinner";
 import ListItem from "./ListItem";
+import Spinner from "../../../components/spinner/Spinner";
+import EmptyList from "../../../components/EmptyList";
 import { ReactComponent as Add } from "../../../assets/add.svg";
 
 const List = ({ navigate }) => {
@@ -35,9 +36,7 @@ const List = ({ navigate }) => {
     getCategories();
   }, []);
 
-  if (isLoading) {
-    return <Spinner />;
-  }
+  if (isLoading) return <Spinner />;
 
   return (
     <>
@@ -49,15 +48,20 @@ const List = ({ navigate }) => {
           <Add className="inline-block w-4 h-4" /> new category
         </Link>
       </div>
-      <div className="md:grid grid-cols-3 lg:grid-cols-4  col-gap-5 row-gap-5">
-        {categories.map(category => (
-          <ListItem
-            key={category._id}
-            navigate={navigate}
-            category={category}
-          />
-        ))}
-      </div>
+
+      {categories.length ? (
+        <div className="md:grid grid-cols-3 lg:grid-cols-4  col-gap-5 row-gap-5">
+          {categories.map(category => (
+            <ListItem
+              key={category._id}
+              navigate={navigate}
+              category={category}
+            />
+          ))}
+        </div>
+      ) : (
+        <EmptyList listName="categories" />
+      )}
     </>
   );
 };
