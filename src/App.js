@@ -33,10 +33,7 @@ if (localStorage.authToken) {
 function App() {
   return (
     <div className="font-body">
-      <ButterToast
-        position={{ vertical: POS_TOP, horizontal: POS_RIGHT }}
-        timeout={10000}
-      />
+      <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
       <Router>
         <Login path="/" />
         <Login path="/login" />
