@@ -16,7 +16,7 @@ const ProductsList = ({ navigate }) => {
     isLoading,
     requestInProgress,
     requestSuccess,
-    requestError
+    requestError,
   } = useRequestStatus();
   const [products, setProducts] = useState([]);
 
@@ -25,7 +25,7 @@ const ProductsList = ({ navigate }) => {
     try {
       requestInProgress();
       const products = await baseUrl.get("/products");
-      const productsList = products.data.products;
+      const productsList = products.data.results;
       setProducts(productsList);
       requestSuccess();
     } catch (error) {
@@ -63,7 +63,7 @@ const ProductsList = ({ navigate }) => {
               </tr>
             </thead>
             <tbody>
-              {products.map(product => (
+              {products.map((product) => (
                 <ListItem
                   product={product}
                   navigate={navigate}

@@ -17,18 +17,18 @@ const Edit = ({ categoryId, navigate }) => {
     isLoading,
     requestInProgress,
     requestError,
-    requestSuccess
+    requestSuccess,
   } = useRequestStatus();
 
   let initialValues = {
-    name: categoryName
+    name: categoryName,
   };
 
-  const getSingleCategory = async categoryId => {
+  const getSingleCategory = async (categoryId) => {
     try {
       requestInProgress();
       const category = await baseUrl.get(`/categories/${categoryId}`);
-      const name = category.data.category.name;
+      const name = category.data.result.name;
       setCategoryName(name);
       requestSuccess();
     } catch (error) {
@@ -41,7 +41,7 @@ const Edit = ({ categoryId, navigate }) => {
     }
   };
 
-  const updateCategory = async name => {
+  const updateCategory = async (name) => {
     try {
       await baseUrl.put(`/categories/${categoryId}`, { name });
       handleRequestSuccess("Category Updated Successfully", () =>
@@ -58,7 +58,7 @@ const Edit = ({ categoryId, navigate }) => {
     getSingleCategory(categoryId);
   }, []);
 
-  const handleSubmit = async values => {
+  const handleSubmit = async (values) => {
     updateCategory(values.name);
   };
 

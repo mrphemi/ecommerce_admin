@@ -12,14 +12,14 @@ const Details = ({ customerId }) => {
     isLoading,
     requestInProgress,
     requestError,
-    requestSuccess
+    requestSuccess,
   } = useRequestStatus();
 
-  const getCustomer = async customerId => {
+  const getCustomer = async (customerId) => {
     try {
       requestInProgress();
       const customer = await baseUrl.get(`/customers/${customerId}`);
-      const info = customer.data.customer;
+      const info = customer.data.result;
       setCustomer(info);
       requestSuccess();
     } catch (error) {

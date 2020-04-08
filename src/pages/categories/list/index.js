@@ -16,14 +16,14 @@ const List = ({ navigate }) => {
     isLoading,
     requestSuccess,
     requestError,
-    requestInProgress
+    requestInProgress,
   } = useRequestStatus();
 
   const getCategories = async () => {
     try {
       requestInProgress();
       const categories = await baseUrl.get("/categories");
-      const categoriesList = categories.data.categories;
+      const categoriesList = categories.data.results;
       setCategories(categoriesList);
       requestSuccess();
     } catch (error) {
@@ -51,7 +51,7 @@ const List = ({ navigate }) => {
 
       {categories.length ? (
         <div className="md:grid grid-cols-3 lg:grid-cols-4  col-gap-5 row-gap-5">
-          {categories.map(category => (
+          {categories.map((category) => (
             <ListItem
               key={category._id}
               navigate={navigate}

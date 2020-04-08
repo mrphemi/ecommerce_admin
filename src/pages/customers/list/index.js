@@ -14,14 +14,14 @@ const List = ({ navigate }) => {
     isLoading,
     requestInProgress,
     requestError,
-    requestSuccess
+    requestSuccess,
   } = useRequestStatus();
 
   const getCustomers = async () => {
     try {
       requestInProgress();
       const customers = await baseUrl.get("/customers");
-      const list = customers.data.customers;
+      const list = customers.data.results;
       setCustomers(list);
       requestSuccess();
     } catch (error) {
@@ -50,7 +50,7 @@ const List = ({ navigate }) => {
               </tr>
             </thead>
             <tbody>
-              {customers.map(customer => (
+              {customers.map((customer) => (
                 <ListItem
                   customer={customer}
                   navigate={navigate}

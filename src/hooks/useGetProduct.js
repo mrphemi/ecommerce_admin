@@ -4,13 +4,13 @@ import baseUrl from "../helpers/api";
 import handleRequestError from "../helpers/handleRequestError";
 import useRequestStatus from "./useRequestStatus";
 
-const useGetProduct = productId => {
+const useGetProduct = (productId) => {
   const [product, setProduct] = useState({});
   const {
     isLoading,
     requestInProgress,
     requestSuccess,
-    requestError
+    requestError,
   } = useRequestStatus();
 
   // Get single product info.
@@ -18,7 +18,7 @@ const useGetProduct = productId => {
     try {
       requestInProgress();
       const product = await baseUrl.get(`/products/${productId}`);
-      const productDetails = product.data.product;
+      const productDetails = product.data.result;
       setProduct(productDetails);
       requestSuccess();
     } catch (error) {
