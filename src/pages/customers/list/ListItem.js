@@ -10,17 +10,17 @@ import { ReactComponent as Trash } from "../../../assets/trash.svg";
 import { ReactComponent as View } from "../../../assets/view.svg";
 
 const ListItem = ({ customer, navigate }) => {
-  const viewInfo = customerId => {
+  const viewInfo = (customerId) => {
     navigate(`info/${customerId}`);
   };
 
-  const deleteCustomer = async customerId => {
+  const deleteCustomer = async (customerId) => {
     const confirmDeletion = await swal({
       title: "Hold on?",
       text: "Are you sure you want to proceed",
       icon: "warning",
       buttons: true,
-      dangerMode: true
+      dangerMode: true,
     });
 
     if (confirmDeletion) {
@@ -48,15 +48,15 @@ const ListItem = ({ customer, navigate }) => {
       </td>
       <td className="w-1/6 px-4 py-3">
         <div className="flex">
-          <Trash
-            className="w-5 h-5 lg:w-4 lg:h-4 mr-4 lg:mr-0 text-gray-700 hover:text-red-500 cursor-pointer"
-            title="Delete customer"
-            onClick={() => deleteCustomer(customer._id)}
-          />
           <View
-            className="ml-4 w-5 h-5 lg:w-4 lg:h-4 text-gray-700 hover:text-blue-500 cursor-pointer"
+            className="w-5 h-5 lg:w-4 lg:h-4 text-gray-700 hover:text-blue-500 cursor-pointer"
             title="View customer details"
             onClick={() => viewInfo(customer._id)}
+          />
+          <Trash
+            className="ml-4 w-5 h-5 lg:w-4 lg:h-4 mr-4 lg:mr-0 text-gray-700 hover:text-red-500 cursor-pointer"
+            title="Delete customer"
+            onClick={() => deleteCustomer(customer._id)}
           />
         </div>
       </td>
@@ -66,7 +66,7 @@ const ListItem = ({ customer, navigate }) => {
 
 ListItem.propTypes = {
   customer: PropTypes.object.isRequired,
-  navigate: PropTypes.func.isRequired
+  navigate: PropTypes.func.isRequired,
 };
 
 export default ListItem;
