@@ -7,6 +7,7 @@ import setAuthToken from "./helpers/setAuthToken";
 import { setCurrentUser, logout } from "./actions/auth/authActions";
 import store from "./store";
 
+import PrivateRoute from "./components/PrivateRoute";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Dashboard from "./pages/dashboard";
@@ -38,7 +39,7 @@ function App() {
         <Login path="/" />
         <Login path="/login" />
         <Register path="/register" />
-        <Dashboard path="/dashboard/*" />
+        <PrivateRoute as={Dashboard} path="/dashboard/*" />
       </Router>
     </div>
   );
