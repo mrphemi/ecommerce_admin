@@ -17,6 +17,9 @@ import Categories from "../categories";
 import CategoriesList from "../categories/list";
 import CreateCategory from "../categories/create";
 import EditCategory from "../categories/edit";
+// profile
+import Profile from "../profile";
+import ProfilePage from "../profile/ProfilePage";
 
 const Dashboard = () => {
   return (
@@ -41,6 +44,10 @@ const Dashboard = () => {
             <CreateCategory path="create" />
             <EditCategory path="edit/:categoryId" />
           </Categories>
+
+          <Profile path="profile">
+            <ProfilePage path="/" />
+          </Profile>
         </Router>
       </div>
     </div>
