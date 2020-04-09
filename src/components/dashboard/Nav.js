@@ -8,7 +8,7 @@ const Nav = () => {
   return (
     <>
       <SideNav isOpen={isOpen} setIsOpen={setIsOpen} />
-      <TopNav toggle={setIsOpen} />
+      <TopNav toggleSideNav={setIsOpen} />
     </>
   );
 };

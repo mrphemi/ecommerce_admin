@@ -1,17 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link, navigate } from "@reach/router";
 import { useSelector, useDispatch } from "react-redux";
 
 import { logout } from "../../actions/auth/authActions";
+import useClickOutside from "../../hooks/useClickOutside";
 
 import { ReactComponent as Hamburger } from "../../assets/menu.svg";
 import { ReactComponent as Logo } from "../../assets/zap.svg";
 import { ReactComponent as UserIcon } from "../../assets/user.svg";
 
-const TopNav = ({ toggle }) => {
+const TopNav = ({ toggleSideNav }) => {
   const dispatch = useDispatch();
-  const first_name = useSelector(state => state.auth.user.first_name);
-  const last_name = useSelector(state => state.auth.user.last_name);
+  const first_name = useSelector((state) => state.auth.user.first_name);
+  const last_name = useSelector((state) => state.auth.user.last_name);
+  const profileDropdownToggler = useRef(null);
+  const sideNavToggler = useRef(null);
+
+  useClickOutside(profileDropdownToggler, () => setShowDropDown(false));
+  useClickOutside(sideNavToggler, () => toggleSideNav(false));
 
   // Sign authenticated user out
   const signout = () => {
@@ -22,34 +28,38 @@ const TopNav = ({ toggle }) => {
   const [showDropDown, setShowDropDown] = useState(false);
 
   const toggleDropDown = () => {
-    setShowDropDown(prev => !prev);
+    setShowDropDown((prevState) => !prevState);
   };
 
   // toggle side nav
-  const toggleSideNav = () => {
-    toggle(prevState => !prevState);
+  const handleToggleSideNav = () => {
+    toggleSideNav((prevState) => !prevState);
   };
   return (
     <nav className="flex items-center h-12 px-4 bg-gray-800 sticky w-full top-0 z-20">
       <Hamburger
         className="text-gray-500 hover:text-white cursor-pointer"
-        onClick={toggleSideNav}
+        ref={sideNavToggler}
+        onClick={handleToggleSideNav}
       />
       <Link className="text-blue-500 hover:text-blue-700 ml-3" to="/">
         <Logo />
       </Link>
 
-      <div className="ml-auto flex relative w-2/3 md:w-1/4">
-        <UserIcon
-          className="text-gray-500 hover:text-white cursor-pointer ml-auto"
+      <div className="ml-auto relative w-2/3 md:w-1/4">
+        <div
+          className="flex cursor-pointer ml-auto w-1/5"
           onClick={toggleDropDown}
-        />
-        {first_name && last_name && (
-          <span className="text-white ml-2 capitalize">
-            {first_name[0]}
-            {last_name[0]}
-          </span>
-        )}
+          ref={profileDropdownToggler}
+        >
+          <UserIcon className="text-white ml-auto" />
+          {first_name && last_name && (
+            <span className="text-white ml-2 capitalize">
+              {first_name[0]}
+              {last_name[0]}
+            </span>
+          )}
+        </div>
         <div
           className={`drop-down absolute top-8 -right-2 shadow-md px-5 py-4 bg-white rounded ${
             showDropDown ? "block" : "hidden"
