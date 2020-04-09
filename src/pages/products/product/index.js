@@ -15,15 +15,15 @@ const Product = ({ productId, navigate }) => {
   const { product, isLoading } = useGetProduct(productId);
 
   // navigate to product edit page
-  const edit = id => navigate(`/dashboard/products/edit/${id}`);
+  const edit = (id) => navigate(`/dashboard/products/edit/${id}`);
 
-  const deleteProduct = async productId => {
+  const deleteProduct = async (productId) => {
     const confirmDeletion = await swal({
       title: "Hold on?",
       text: "Are you sure you want to proceed",
       icon: "warning",
       buttons: true,
-      dangerMode: true
+      dangerMode: true,
     });
 
     if (confirmDeletion) {

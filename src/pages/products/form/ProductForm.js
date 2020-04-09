@@ -14,7 +14,7 @@ const ProductForm = ({ form, role }) => {
   const getCategories = async () => {
     try {
       const categories = await baseUrl.get("/categories");
-      const categoriesList = categories.data.categories;
+      const categoriesList = categories.data.results;
       setCategories(categoriesList);
     } catch (error) {
       console.log(error);
@@ -60,7 +60,7 @@ const ProductForm = ({ form, role }) => {
               id="category"
             >
               <option value="">--Please choose a category--</option>
-              {categories.map(category => (
+              {categories.map((category) => (
                 <option key={category._id} value={category._id}>
                   {category.name}
                 </option>
@@ -148,5 +148,5 @@ export default ProductForm;
 
 ProductForm.propTypes = {
   form: PropTypes.object.isRequired,
-  role: PropTypes.string.isRequired
+  role: PropTypes.string.isRequired,
 };
