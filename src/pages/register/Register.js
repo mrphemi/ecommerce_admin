@@ -1,25 +1,40 @@
 import React, { useEffect } from "react";
 import { Formik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
+import baseUrl from "../../helpers/api";
+import handleRequestError from "../../helpers/handleRequestError";
+import handleRequestSuccess from "../../helpers/handleRequestSuccess";
 import { RegisterSchema } from "../../helpers/validation";
-import { register } from "../../actions/auth/authActions";
 
 import RegisterForm from "./RegisterForm";
 
 import { ReactComponent as Logo } from "../../assets/zap.svg";
 
 const Register = ({ navigate }) => {
-  const dispatch = useDispatch();
-  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
-
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   useEffect(() => {
     // if user is already authenticated, redirect to dashboard
     if (isAuthenticated) navigate("/dashboard");
   }, [isAuthenticated, navigate]);
 
-  const handleSubmit = values => {
-    dispatch(register(values, navigate));
+  // Register user
+  const register = async (data, navigate, setSubmitting) => {
+    try {
+      await baseUrl.post("/admin/register", data);
+      navigate("/login");
+      handleRequestSuccess(
+        "Registration Successful, Please login to continue",
+        null,
+      );
+    } catch (error) {
+      handleRequestError(error, null);
+      setSubmitting(false);
+    }
+  };
+
+  const handleSubmit = (values, { setSubmitting }) => {
+    register(values, navigate, setSubmitting);
   };
 
   return (
@@ -36,14 +51,20 @@ const Register = ({ navigate }) => {
             first_name: "",
             last_name: "",
             email: "",
-            password: ""
+            password: "",
           }}
           validationSchema={RegisterSchema}
           onSubmit={handleSubmit}
         >
           {({ values, errors, touched, handleSubmit, isSubmitting }) => (
             <RegisterForm
-              form={{ values, handleSubmit, errors, touched, isSubmitting }}
+              form={{
+                values,
+                handleSubmit,
+                errors,
+                touched,
+                isSubmitting,
+              }}
             />
           )}
         </Formik>

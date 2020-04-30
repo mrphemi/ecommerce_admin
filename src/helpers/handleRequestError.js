@@ -10,7 +10,7 @@ function isCallbackFunction(cb) {
   }
 }
 
-function isServerError() {
+function ServerError() {
   ButterToast.raise({
     content: (
       <Cinnamon.Crisp
@@ -18,29 +18,29 @@ function isServerError() {
         content="Something went wrong. Please refresh and try again"
         title="Error"
       />
-    )
+    ),
   });
 }
 
-function isUnauthorizedError() {
+function UnauthorizedError(message) {
   ButterToast.raise({
     content: (
       <Cinnamon.Crisp
-        scheme={Cinnamon.Crisp.SCHEME_BLUE}
-        content="Please login to continue"
+        scheme={Cinnamon.Crisp.SCHEME_RED}
+        content={message}
         title="Error"
       />
-    )
+    ),
   });
 }
 
 function handleRequestError(error, cb) {
   if (error.response) {
     if (error.response.status >= 500) {
-      isServerError();
+      ServerError();
       isCallbackFunction(cb);
     } else if (error.response.status === 401) {
-      isUnauthorizedError();
+      UnauthorizedError(error.response.data.error);
       navigate("/login");
     } else {
       ButterToast.raise({
@@ -50,7 +50,7 @@ function handleRequestError(error, cb) {
             content={() => error.response.data.error}
             title="Error"
           />
-        )
+        ),
       });
       isCallbackFunction(cb);
     }

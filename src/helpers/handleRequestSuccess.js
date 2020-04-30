@@ -17,7 +17,7 @@ function handleRequestSuccess(message, cb) {
         content={() => message}
         title="Success"
       />
-    )
+    ),
   });
   isCallbackFunction(cb);
 }

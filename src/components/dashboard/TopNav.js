@@ -1,9 +1,11 @@
 import React, { useState, useRef } from "react";
 import { Link, navigate } from "@reach/router";
 import { useSelector, useDispatch } from "react-redux";
+import ButterToast, { Cinnamon } from "butter-toast";
 
-import { logout } from "../../actions/auth/authActions";
+import setAuthToken from "../../helpers/setAuthToken";
 import useClickOutside from "../../hooks/useClickOutside";
+import { setCurrentUser } from "../../actions/auth/authActions";
 
 import { ReactComponent as Hamburger } from "../../assets/menu.svg";
 import { ReactComponent as Logo } from "../../assets/zap.svg";
@@ -11,8 +13,7 @@ import { ReactComponent as UserIcon } from "../../assets/user.svg";
 
 const TopNav = ({ toggleSideNav }) => {
   const dispatch = useDispatch();
-  const first_name = useSelector((state) => state.auth.user.first_name);
-  const last_name = useSelector((state) => state.auth.user.last_name);
+  const { first_name, last_name } = useSelector((state) => state.auth.user);
   const profileDropdownToggler = useRef(null);
   const sideNavToggler = useRef(null);
 
@@ -20,8 +21,22 @@ const TopNav = ({ toggleSideNav }) => {
   useClickOutside(sideNavToggler, () => toggleSideNav(false));
 
   // Sign authenticated user out
-  const signout = () => {
-    dispatch(logout(navigate));
+  const signOut = () => {
+    // Remove token from local storage
+    localStorage.removeItem("authToken");
+    // Remove auth header for future requests
+    setAuthToken(false);
+    dispatch(setCurrentUser({}));
+    navigate("/login");
+    ButterToast.raise({
+      content: (
+        <Cinnamon.Crisp
+          scheme={Cinnamon.Crunch.SCHEME_BLUE}
+          content={() => "Please Login to Continue"}
+          title="Logged Out"
+        />
+      ),
+    });
   };
 
   // dropdown state
@@ -70,7 +85,7 @@ const TopNav = ({ toggleSideNav }) => {
           </Link>
           <span
             className="capitalize block mt-3 cursor-pointer hover:text-blue-300"
-            onClick={signout}
+            onClick={signOut}
           >
             logout
           </span>

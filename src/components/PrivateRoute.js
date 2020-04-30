@@ -1,6 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Redirect } from "@reach/router";
+import { useSelector } from "react-redux";
 
 const PrivateRoute = ({ as: Component, ...props }) => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);

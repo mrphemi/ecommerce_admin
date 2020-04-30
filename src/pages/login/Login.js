@@ -1,9 +1,15 @@
 import React, { useEffect } from "react";
 import { Formik } from "formik";
+import decode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
 
+import baseUrl from "../../helpers/api";
+import setAuthToken from "../../helpers/setAuthToken";
+import handleRequestError from "../../helpers/handleRequestError";
+import handleRequestSuccess from "../../helpers/handleRequestSuccess";
+import { setCurrentUser } from "../../actions/auth/authActions";
+
 import { LoginSchema } from "../../helpers/validation";
-import { login } from "../../actions/auth/authActions";
 
 import LoginForm from "./LoginForm";
 
@@ -11,15 +17,35 @@ import { ReactComponent as Logo } from "../../assets/zap.svg";
 
 const Login = ({ navigate }) => {
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
-
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   useEffect(() => {
     // if user is authenticated, redirect to dashboard
     if (isAuthenticated) navigate("/dashboard");
   }, [isAuthenticated, navigate]);
 
-  const handleSubmit = values => {
-    dispatch(login(values, navigate));
+  // Login user
+  const login = async (data, navigate, setSubmitting) => {
+    try {
+      const login = await baseUrl.post("/admin/login", data);
+      // Set token to localStorage
+      const { token } = login.data;
+      localStorage.setItem("authToken", token);
+      // Set token to Auth header
+      setAuthToken(token);
+      // Decode token to get user data
+      const decoded = decode(token);
+      // Set current user and isAuthenticated status
+      dispatch(setCurrentUser(decoded));
+      navigate("/dashboard");
+      handleRequestSuccess("Login Successful", null);
+    } catch (error) {
+      handleRequestError(error, null);
+      setSubmitting(false);
+    }
+  };
+
+  const handleSubmit = (values, { setSubmitting }) => {
+    login(values, navigate, setSubmitting);
   };
 
   return (
@@ -32,13 +58,22 @@ const Login = ({ navigate }) => {
       {/* Login form */}
       <div className="w-full px-5 pb-8 md:pb-0 mt-10 md:px-0 md:mt-20 xl:mt-0 md:flex justify-center items-center flex-col">
         <Formik
-          initialValues={{ email: "", password: "" }}
+          initialValues={{
+            email: "",
+            password: "",
+          }}
           validationSchema={LoginSchema}
           onSubmit={handleSubmit}
         >
           {({ values, errors, touched, handleSubmit, isSubmitting }) => (
             <LoginForm
-              form={{ values, handleSubmit, errors, touched, isSubmitting }}
+              form={{
+                values,
+                handleSubmit,
+                errors,
+                touched,
+                isSubmitting,
+              }}
             />
           )}
         </Formik>

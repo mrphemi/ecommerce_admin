@@ -1,5 +1,6 @@
 import React from "react";
 import { Router, navigate } from "@reach/router";
+
 import decode from "jwt-decode";
 import ButterToast, { POS_TOP, POS_RIGHT } from "butter-toast";
 
@@ -36,7 +37,7 @@ function App() {
     <div className="font-body">
       <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
       <Router>
-        <Login path="/" />
+        <PrivateRoute as={Dashboard} path="/" />
         <Login path="/login" />
         <Register path="/register" />
         <PrivateRoute as={Dashboard} path="/dashboard/*" />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { Link } from "@reach/router";
+import { useSelector } from "react-redux";
 
 import baseUrl from "../../helpers/api";
 import handleRequestError from "../../helpers/handleRequestError";
@@ -13,7 +13,7 @@ import { ReactComponent as Edit } from "../../assets/edit.svg";
 
 const ProfilePage = () => {
   const [user, setUser] = useState({});
-  const userId = useSelector((state) => state.auth.user.id);
+  const authUser = useSelector((state) => state.auth.user);
   const {
     isLoading,
     requestInProgress,
@@ -39,7 +39,7 @@ const ProfilePage = () => {
   };
 
   useEffect(() => {
-    getProfile(userId);
+    getProfile(authUser.id);
   }, []);
 
   if (isLoading) return <Spinner />;
