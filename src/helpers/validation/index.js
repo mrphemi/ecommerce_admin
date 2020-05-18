@@ -67,3 +67,10 @@ export const CategorySchema = Yup.object().shape({
 export const BrandSchema = Yup.object().shape({
   name: Yup.string().trim().required("Please enter brand name"),
 });
+
+export const SizeSchema = Yup.object().shape({
+  size: Yup.number()
+    .typeError("Size must be a number")
+    .positive("Size must be greater than zero")
+    .required("Please enter size"),
+});

@@ -22,7 +22,11 @@ import Brands from "../brands";
 import BrandsList from "../brands/list";
 import CreateBrand from "../brands/create";
 import EditBrand from "../brands/edit";
-
+// sizes
+import Sizes from "../sizes";
+import SizesList from "../sizes/list";
+import CreateSize from "../sizes/create";
+import EditSize from "../sizes/edit";
 // profile
 import Profile from "../profile";
 import ProfilePage from "../profile/ProfilePage";
@@ -56,6 +60,12 @@ const Dashboard = () => {
             <CreateBrand path="create" />
             <EditBrand path="edit/:brandId" />
           </Brands>
+
+          <Sizes path="sizes">
+            <SizesList path="/" />
+            <CreateSize path="create" />
+            <EditSize path="edit/:sizeId" />
+          </Sizes>
 
           <Profile path="profile">
             <ProfilePage path="/" />

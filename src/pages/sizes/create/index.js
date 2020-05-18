@@ -5,22 +5,22 @@ import baseUrl from "../../../helpers/api";
 import handleRequestError from "../../../helpers/handleRequestError";
 import handleRequestSuccess from "../../../helpers/handleRequestSuccess";
 
-import Form from "../form/BrandForm";
+import Form from "../form/SizeForm";
 
-import { BrandSchema } from "../../../helpers/validation";
+import { SizeSchema } from "../../../helpers/validation";
 
 const Create = ({ navigate }) => {
   const initialValues = {
-    name: "",
+    size: "",
   };
 
-  // create new brands
-  const createBrand = async (name) => {
+  // create new size
+  const createSize = async (size) => {
     try {
-      await baseUrl.post("/brands", { name });
-      handleRequestSuccess("Brand Created Successfully", () =>
+      await baseUrl.post("/sizes", { size });
+      handleRequestSuccess("Size Created Successfully", () =>
         setTimeout(() => {
-          navigate(`/dashboard/brands`);
+          navigate(`/dashboard/sizes`);
         }, 500),
       );
     } catch (error) {
@@ -29,18 +29,18 @@ const Create = ({ navigate }) => {
   };
 
   const handleSubmit = (values) => {
-    createBrand(values.name);
+    createSize(Number(values.size));
   };
 
   return (
     <div>
       <h1 className="capitalize text-xl mb-10 font-bold text-gray-700">
-        create new category
+        create new size
       </h1>
 
       <Formik
         initialValues={initialValues}
-        validationSchema={BrandSchema}
+        validationSchema={SizeSchema}
         onSubmit={handleSubmit}
       >
         {({ handleSubmit, isSubmitting }) => (
