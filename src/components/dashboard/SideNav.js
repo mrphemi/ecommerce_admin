@@ -5,6 +5,8 @@ import { ReactComponent as ProductsIcon } from "../../assets/products.svg";
 import { ReactComponent as CustomersIcon } from "../../assets/customers.svg";
 import { ReactComponent as OrdersIcon } from "../../assets/cart.svg";
 import { ReactComponent as CategoryIcon } from "../../assets/category.svg";
+import { ReactComponent as SizeIcon } from "../../assets/anon.svg";
+import { ReactComponent as BrandIcon } from "../../assets/anon.svg";
 
 const SideNav = ({ isOpen, setIsOpen }) => {
   // close nav when a link is closed
@@ -50,6 +52,24 @@ const SideNav = ({ isOpen, setIsOpen }) => {
         >
           <CategoryIcon className="w-4 mr-2" />
           categories
+        </Link>
+
+        <Link
+          to="sizes"
+          className="capitalize text-gray-600 hover:text-blue-400 text-sm py-4 flex items-center"
+          onClick={close}
+        >
+          <SizeIcon className="w-4 mr-2" />
+          sizes
+        </Link>
+
+        <Link
+          to="brands"
+          className="capitalize text-gray-600 hover:text-blue-400 text-sm py-4 flex items-center"
+          onClick={close}
+        >
+          <BrandIcon className="w-4 mr-2" />
+          brands
         </Link>
       </div>
     </nav>

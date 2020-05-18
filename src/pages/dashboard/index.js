@@ -17,6 +17,12 @@ import Categories from "../categories";
 import CategoriesList from "../categories/list";
 import CreateCategory from "../categories/create";
 import EditCategory from "../categories/edit";
+//brands
+import Brands from "../brands";
+import BrandsList from "../brands/list";
+import CreateBrand from "../brands/create";
+import EditBrand from "../brands/edit";
+
 // profile
 import Profile from "../profile";
 import ProfilePage from "../profile/ProfilePage";
@@ -44,6 +50,12 @@ const Dashboard = () => {
             <CreateCategory path="create" />
             <EditCategory path="edit/:categoryId" />
           </Categories>
+
+          <Brands path="brands">
+            <BrandsList path="/" />
+            <CreateBrand path="create" />
+            <EditBrand path="edit/:brandId" />
+          </Brands>
 
           <Profile path="profile">
             <ProfilePage path="/" />

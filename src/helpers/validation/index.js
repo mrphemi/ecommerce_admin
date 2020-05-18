@@ -8,16 +8,12 @@ export const LoginSchema = Yup.object().shape({
   password: Yup.string()
     .min(6, "Too Short. Minimum of 6 characters")
     .max(70, "Too Long! maximum of 70 characters")
-    .required("Password is Required")
+    .required("Password is Required"),
 });
 
 export const RegisterSchema = Yup.object().shape({
-  first_name: Yup.string()
-    .trim()
-    .required("Please enter your first name"),
-  last_name: Yup.string()
-    .trim()
-    .required("Please enter your last name"),
+  first_name: Yup.string().trim().required("Please enter your first name"),
+  last_name: Yup.string().trim().required("Please enter your last name"),
   email: Yup.string()
     .trim()
     .email("Email must be a valid email")
@@ -25,16 +21,12 @@ export const RegisterSchema = Yup.object().shape({
   password: Yup.string()
     .min(6, "Too Short. Minimum of 6 characters")
     .max(70, "Too Long! maximum of 70 characters")
-    .required("Password is Required")
+    .required("Password is Required"),
 });
 
 export const CreateProductSchema = Yup.object().shape({
-  name: Yup.string()
-    .trim()
-    .required("Please enter product name"),
-  category: Yup.string()
-    .trim()
-    .required("Please select a category"),
+  name: Yup.string().trim().required("Please enter product name"),
+  category: Yup.string().trim().required("Please select a category"),
   description: Yup.string()
     .trim()
     .required("Please provide product description"),
@@ -47,16 +39,12 @@ export const CreateProductSchema = Yup.object().shape({
     .typeError("Quantity must be a number")
     .positive("Quantity must be greater than zero")
     .required("Please enter price"),
-  product_img: Yup.mixed().required("Please select an image")
+  product_img: Yup.mixed().required("Please select an image"),
 });
 
 export const EditProductSchema = Yup.object().shape({
-  name: Yup.string()
-    .trim()
-    .required("Please enter product name"),
-  category: Yup.string()
-    .trim()
-    .required("Please select a category"),
+  name: Yup.string().trim().required("Please enter product name"),
+  category: Yup.string().trim().required("Please select a category"),
   description: Yup.string()
     .trim()
     .required("Please provide product description"),
@@ -69,11 +57,13 @@ export const EditProductSchema = Yup.object().shape({
     .typeError("Quantity must be a number")
     .positive("Quantity must be greater than zero")
     .required("Please enter price"),
-  product_img: Yup.mixed()
+  product_img: Yup.mixed(),
 });
 
 export const CategorySchema = Yup.object().shape({
-  name: Yup.string()
-    .trim()
-    .required("Please enter category name")
+  name: Yup.string().trim().required("Please enter category name"),
+});
+
+export const BrandSchema = Yup.object().shape({
+  name: Yup.string().trim().required("Please enter brand name"),
 });

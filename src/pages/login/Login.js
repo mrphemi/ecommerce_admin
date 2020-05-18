@@ -51,7 +51,7 @@ const Login = ({ navigate }) => {
   return (
     <div className="w-full xl:h-screen xl:flex">
       <div className="bg-blue-700 text-center text-white p-10 xl:py-0 xl:h-screen xl:flex flex-col justify-center items-center xl:w-1/3">
-        <Logo />
+        <Logo className="mx-auto" />
         <h2 className="mt-5 text-xl">Welcome to E-commerce Admin</h2>
       </div>
 
