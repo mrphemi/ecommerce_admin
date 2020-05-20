@@ -27,6 +27,10 @@ export const RegisterSchema = Yup.object().shape({
 export const CreateProductSchema = Yup.object().shape({
   name: Yup.string().trim().required("Please enter product name"),
   category: Yup.string().trim().required("Please select a category"),
+  brand: Yup.string().trim().required("Please select a brand"),
+  availableSizes: Yup.array()
+    .min(1)
+    .required("Please select at least one size"),
   description: Yup.string()
     .trim()
     .required("Please provide product description"),

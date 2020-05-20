@@ -1,7 +1,7 @@
 import React from "react";
 
 const Description = ({ field, form }) => {
-  const handleChange = e => {
+  const handleChange = (e) => {
     const text = e.target.value;
     form.setFieldValue(field.name, text);
   };

@@ -14,28 +14,30 @@ const CreateProduct = () => {
   const initialValues = {
     name: "",
     category: "",
+    brand: "",
     description: "",
     price: "",
     quantity: 1,
-    product_img: null
+    product_img: null,
+    availableSizes: [],
   };
 
   // Create new product
-  const createProduct = async formData => {
+  const createProduct = async (formData) => {
     try {
       const newProduct = await baseUrl.post("/products", formData);
       const { id } = newProduct.data;
       handleHttpSuccess("Product Created Successfully", () =>
         setTimeout(() => {
           navigate(`/dashboard/products/${id}`);
-        }, 500)
+        }, 500),
       );
     } catch (error) {
       handleHttpError(error, null);
     }
   };
 
-  const handleSubmit = values => {
+  const handleSubmit = (values) => {
     const form = new FormData();
     form.append("name", values.name);
     form.append("category", values.category);
@@ -43,6 +45,8 @@ const CreateProduct = () => {
     form.append("price", Number(values.price));
     form.append("quantity", values.quantity);
     form.append("product_img", values.product_img);
+    form.append("brand", values.brand);
+    form.append("availableSizes", values.availableSizes);
 
     createProduct(form);
   };
@@ -62,7 +66,7 @@ const CreateProduct = () => {
             role="create"
             form={{
               handleSubmit,
-              isSubmitting
+              isSubmitting,
             }}
           />
         )}
