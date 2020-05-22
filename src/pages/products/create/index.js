@@ -47,7 +47,6 @@ const CreateProduct = () => {
     form.append("product_img", values.product_img);
     form.append("brand", values.brand);
     form.append("availableSizes", values.availableSizes);
-
     createProduct(form);
   };
 
