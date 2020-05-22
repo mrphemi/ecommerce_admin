@@ -5,7 +5,6 @@ const SizeList = ({ field, form, list }) => {
   const [sizes, setSizes] = useState([]);
 
   const handleCheck = (e) => {
-    e.preventDefault();
     const { value, checked } = e.target;
     if (checked) {
       setSizes([...sizes, value]);
@@ -13,23 +12,25 @@ const SizeList = ({ field, form, list }) => {
       const filtered = sizes.filter((size) => size !== value);
       setSizes(filtered);
     }
-    setTimeout(() => {
-      form.setFieldValue(field.name, sizes);
-    }, 1000);
+    form.setFieldValue(field.name, sizes);
   };
 
   return (
     <>
-      {list.map((item) => (
-        <div key={item._id}>
-          <label htmlFor="itembox">{item.size}</label>
+      {list.map((item, i) => (
+        <div className="pretty p-default p-curve" key={item._id}>
           <input
+            id="one"
             type="checkbox"
             name="availableSizes"
-            id="itembox"
             value={item._id}
             onChange={handleCheck}
           />
+          <div className="state">
+            <label htmlFor="one" className="text-gray-700 align-top">
+              {item.size}
+            </label>
+          </div>
         </div>
       ))}
     </>

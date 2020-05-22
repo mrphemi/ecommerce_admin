@@ -94,7 +94,10 @@ const ProductForm = ({ form, role }) => {
 
       <div className="flex flex-wrap -mx-3 mb-10">
         {/* Sizes */}
-        <div className="w-full px-3">
+        <p className="px-3 uppercase tracking-wide text-gray-700 font-bold mb-4 capitalize">
+          Select sizes
+        </p>
+        <div className="w-full px-3 flex flex-wrap">
           <Field name="availableSizes" component={SizeList} list={sizes} />
           <ErrorMsg name="availableSizes" />
         </div>
