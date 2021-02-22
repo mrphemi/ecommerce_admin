@@ -29,7 +29,7 @@ const SideNav = ({ isOpen, setIsOpen }) => {
           products
         </Link>
         <Link
-          to="/"
+          to="orders"
           className="capitalize text-gray-600 hover:text-blue-400 text-sm py-4 flex items-center"
           onClick={close}
         >

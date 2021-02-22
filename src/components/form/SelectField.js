@@ -4,7 +4,7 @@ import { Field } from "formik";
 
 import ErrorMsg from "./ErrorMsg";
 
-const SelectField = ({ label, title, name, id, list }) => {
+const SelectField = ({ label, title, id, list }) => {
   return (
     <>
       <label
@@ -16,8 +16,8 @@ const SelectField = ({ label, title, name, id, list }) => {
       <div className="relative">
         <Field
           as="select"
-          name={name}
-          className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border focus:border-2 focus:border-gray-500"
+          name={id}
+          className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 mb-3 rounded leading-tight focus:outline-none focus:bg-white focus:border focus:border-2 focus:border-gray-500"
           id={id}
         >
           <option value="">--{title}--</option>
@@ -37,7 +37,7 @@ const SelectField = ({ label, title, name, id, list }) => {
           </svg>
         </div>
       </div>
-      <ErrorMsg name={name} />
+      <ErrorMsg name={id} />
     </>
   );
 };
@@ -45,7 +45,6 @@ const SelectField = ({ label, title, name, id, list }) => {
 SelectField.propTypes = {
   label: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   list: PropTypes.array.isRequired,
 };

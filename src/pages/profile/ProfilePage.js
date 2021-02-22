@@ -31,7 +31,6 @@ const ProfilePage = () => {
       requestError();
       handleRequestError(error, () => {
         setTimeout(() => {
-          // Go back to customers list
           window.history.back();
         }, 500);
       });

@@ -17,7 +17,6 @@ const CreateProduct = () => {
     brand: "",
     description: "",
     price: "",
-    quantity: 1,
     product_img: null,
     availableSizes: [],
   };
@@ -43,10 +42,13 @@ const CreateProduct = () => {
     form.append("category", values.category);
     form.append("description", values.description);
     form.append("price", Number(values.price));
-    form.append("quantity", values.quantity);
     form.append("product_img", values.product_img);
     form.append("brand", values.brand);
-    form.append("availableSizes", JSON.stringify(values.availableSizes));
+    let sizes = values.availableSizes.map((size) => ({
+      size: size.size,
+      quantity: size.quantity,
+    }));
+    form.append("availableSizes", JSON.stringify(sizes));
     createProduct(form);
   };
 

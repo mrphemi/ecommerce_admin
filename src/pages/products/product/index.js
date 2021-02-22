@@ -32,7 +32,7 @@ const Product = ({ productId, navigate }) => {
         handleHttpSuccess("Product Deleted Successfully", () =>
           setTimeout(() => {
             navigate("/dashboard/products");
-          }, 500)
+          }, 500),
         );
       } catch (error) {
         handleRequestError(error, null);
@@ -40,7 +40,14 @@ const Product = ({ productId, navigate }) => {
     }
   };
 
-  const { image, name, quantity, price, description } = product;
+  const { image, name, price, description } = product;
+  const quantity =
+    product.availableSizes?.reduce(
+      (acc, currIitem) => acc + currIitem.quantity,
+      0,
+    ) ?? undefined;
+
+  console.log(quantity);
 
   if (isLoading) {
     return <Spinner />;

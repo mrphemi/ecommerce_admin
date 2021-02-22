@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "@reach/router";
+import { useDispatch, useSelector } from "react-redux";
 
+import { setProducts } from "../../../actions/productsActions";
 import baseUrl from "../../../helpers/api";
 import handleRequestError from "../../../helpers/handleRequestError";
 import useRequestStatus from "../../../hooks/useRequestStatus";
@@ -10,6 +12,7 @@ import { ReactComponent as Add } from "../../../assets/add.svg";
 import ListItem from "./ListItem";
 import Spinner from "../../../components/spinner/Spinner";
 import EmptyList from "../../../components/EmptyList";
+import Pagination from "../../../components/Pagination";
 
 const ProductsList = ({ navigate }) => {
   const {
@@ -18,7 +21,8 @@ const ProductsList = ({ navigate }) => {
     requestSuccess,
     requestError,
   } = useRequestStatus();
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.products.products);
 
   // Get product list
   const getProducts = async () => {
@@ -26,7 +30,8 @@ const ProductsList = ({ navigate }) => {
       requestInProgress();
       const products = await baseUrl.get("/products");
       const productsList = products.data.results;
-      setProducts(productsList);
+      const productsMetaData = products.data.meta;
+      dispatch(setProducts(productsMetaData, productsList));
       requestSuccess();
     } catch (error) {
       requestError();
@@ -76,6 +81,8 @@ const ProductsList = ({ navigate }) => {
       ) : (
         <EmptyList listName="products" />
       )}
+
+      {/* <Pagination /> */}
     </>
   );
 };

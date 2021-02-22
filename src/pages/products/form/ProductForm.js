@@ -21,16 +21,16 @@ const ProductForm = ({ form, role }) => {
   if (isLoading) {
     return <Spinner />;
   }
+
   return (
     <Form onSubmit={form.handleSubmit}>
       <div className="flex flex-wrap -mx-3 mb-6">
         {/* Name */}
-        <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+        <div className="w-full md:w-1/3 px-3 md:mb-0">
           <FormField
             type="text"
             label="enter product name"
             id="name"
-            name="name"
             placeholder="Enter product name"
           />
         </div>
@@ -39,7 +39,6 @@ const ProductForm = ({ form, role }) => {
           <SelectField
             label="Choose Category"
             title="Please choose a category"
-            name="category"
             id="category"
             list={categories}
           />
@@ -49,7 +48,6 @@ const ProductForm = ({ form, role }) => {
           <SelectField
             label="Choose Product Brand"
             title="Please choose a brand"
-            name="brand"
             id="brand"
             list={brands}
           />
@@ -63,18 +61,7 @@ const ProductForm = ({ form, role }) => {
             type="text"
             label="enter product price"
             id="price"
-            name="price"
             placeholder="Enter Price"
-          />
-        </div>
-        {/* Quantity */}
-        <div className="w-full md:w-1/3 px-3">
-          <FormField
-            type="number"
-            label="enter quantity"
-            id="quantity"
-            name="quantity"
-            placeholder="Enter Quantity"
           />
         </div>
         {/* Image file upload */}
@@ -97,7 +84,7 @@ const ProductForm = ({ form, role }) => {
         <p className="px-3 uppercase tracking-wide text-gray-700 font-bold mb-4 capitalize">
           Select sizes
         </p>
-        <div className="w-full px-3 flex flex-wrap">
+        <div className="w-full px-3">
           <Field name="availableSizes" component={SizeList} list={sizes} />
           <ErrorMsg name="availableSizes" />
         </div>

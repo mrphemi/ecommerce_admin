@@ -5,7 +5,7 @@ import decode from "jwt-decode";
 import ButterToast, { POS_TOP, POS_RIGHT } from "butter-toast";
 
 import setAuthToken from "./helpers/setAuthToken";
-import { setCurrentUser, logout } from "./actions/auth/authActions";
+import { setCurrentUser, logout } from "./actions/authActions";
 import store from "./store";
 
 import PrivateRoute from "./components/PrivateRoute";

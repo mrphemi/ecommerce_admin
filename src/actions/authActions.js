@@ -1,6 +1,6 @@
-import setAuthToken from "../../helpers/setAuthToken";
+import setAuthToken from "../helpers/setAuthToken";
 
-import { SET_CURRENT_USER } from "../types";
+import { SET_CURRENT_USER } from "./types";
 
 // Set logged in user
 export const setCurrentUser = (user) => {

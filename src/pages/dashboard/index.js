@@ -30,6 +30,7 @@ import EditSize from "../sizes/edit";
 // profile
 import Profile from "../profile";
 import ProfilePage from "../profile/ProfilePage";
+import EditProfile from "../profile/edit";
 
 const Dashboard = () => {
   return (
@@ -69,6 +70,7 @@ const Dashboard = () => {
 
           <Profile path="profile">
             <ProfilePage path="/" />
+            <EditProfile path="edit" />
           </Profile>
         </Router>
       </div>

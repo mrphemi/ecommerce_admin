@@ -26,7 +26,7 @@ const useGetProduct = (productId) => {
       handleRequestError(error, () =>
         setTimeout(() => {
           window.history.back();
-        }, 500)
+        }, 500),
       );
     }
   };

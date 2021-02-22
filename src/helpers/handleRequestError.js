@@ -40,14 +40,14 @@ function handleRequestError(error, cb) {
       ServerError();
       isCallbackFunction(cb);
     } else if (error.response.status === 401) {
-      UnauthorizedError(error.response.data.error);
+      UnauthorizedError(error.response.data.message);
       navigate("/login");
     } else {
       ButterToast.raise({
         content: (
           <Cinnamon.Crisp
             scheme={Cinnamon.Crisp.SCHEME_RED}
-            content={() => error.response.data.error}
+            content={() => error.response.data.message}
             title="Error"
           />
         ),

@@ -2,7 +2,7 @@ import { SET_CURRENT_USER } from "../actions/types";
 
 const INITIAL_STATE = {
   isAuthenticated: false,
-  user: {}
+  user: {},
 };
 
 const authReducer = (state = INITIAL_STATE, action) => {
@@ -11,7 +11,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isAuthenticated: Object.keys(action.payload).length ? true : false,
-        user: action.payload
+        user: action.payload,
       };
     default:
       return state;

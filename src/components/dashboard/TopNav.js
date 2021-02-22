@@ -5,7 +5,7 @@ import ButterToast, { Cinnamon } from "butter-toast";
 
 import setAuthToken from "../../helpers/setAuthToken";
 import useClickOutside from "../../hooks/useClickOutside";
-import { setCurrentUser } from "../../actions/auth/authActions";
+import { setCurrentUser } from "../../actions/authActions";
 
 import { ReactComponent as Hamburger } from "../../assets/menu.svg";
 import { ReactComponent as Logo } from "../../assets/zap.svg";
@@ -57,7 +57,7 @@ const TopNav = ({ toggleSideNav }) => {
         ref={sideNavToggler}
         onClick={handleToggleSideNav}
       />
-      <Link className="text-blue-500 hover:text-blue-700 ml-3" to="/">
+      <Link className="text-blue-500 hover:text-blue-700 ml-3" to="/dashboard">
         <Logo />
       </Link>
 

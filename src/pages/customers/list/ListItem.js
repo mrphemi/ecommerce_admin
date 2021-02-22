@@ -29,7 +29,7 @@ const ListItem = ({ customer, navigate }) => {
         handleRequestSuccess("Customer Deleted Successfully", () =>
           setTimeout(() => {
             window.location.reload();
-          }, 500)
+          }, 500),
         );
       } catch (error) {
         handleRequestError(error, null);
