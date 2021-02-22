@@ -36,11 +36,6 @@ export const CreateProductSchema = Yup.object().shape({
   description: Yup.string()
     .trim()
     .required("Please provide product description"),
-  quantity: Yup.number()
-    .typeError("Quantity must be a number")
-    .positive("Quantity must be greater than zero")
-    .integer("Quantity must be an integer")
-    .required("Please enter quantity"),
   price: Yup.number()
     .typeError("Price must be a number")
     .positive("Price must be greater than zero")
