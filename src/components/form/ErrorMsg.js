@@ -3,7 +3,7 @@ import { ErrorMessage } from "formik";
 
 const ErrorMsg = ({ name }) => {
   return (
-    <p className="text-red-500 text-xs italic">
+    <p className="error_msg">
       <ErrorMessage name={name} />
     </p>
   );

@@ -7,14 +7,11 @@ import ErrorMsg from "./ErrorMsg";
 const FormField = ({ type, label, id, placeholder }) => {
   return (
     <>
-      <label
-        className="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2 capitalize"
-        htmlFor={id}
-      >
+      <label className="form_label" htmlFor={id}>
         {label}
       </label>
       <Field
-        className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border focus:border-2 focus:border-gray-500"
+        className="form_styles mb-3"
         id={id}
         name={id}
         type={type}

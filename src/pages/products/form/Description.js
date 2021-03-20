@@ -8,14 +8,11 @@ const Description = ({ field, form }) => {
 
   return (
     <>
-      <label
-        className="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2 capitalize"
-        htmlFor="description"
-      >
+      <label className="form_label" htmlFor="description">
         Add description
       </label>
       <textarea
-        className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border focus:border-2 focus:border-gray-500"
+        className="form_styles w-full"
         id="description"
         cols="30"
         rows="10"

@@ -1,25 +1,22 @@
 import React from "react";
 
 const FileInput = ({ field, form }) => {
-  const handleChange = e => {
+  const handleChange = (e) => {
     const file = e.currentTarget.files[0];
     form.setFieldValue(field.name, file);
   };
 
   return (
     <>
-      <label
-        className="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2 capitalize"
-        htmlFor="image"
-      >
+      <label className="form_label" htmlFor="image">
         choose image
       </label>
 
       <input
-        className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border focus:border-2 focus:border-gray-500"
+        className="form_styles w-full mb-3"
         type="file"
         id="image"
-        placeholder="Choose Product image"
+        placeholder="choose product image"
         accept="image/*"
         onChange={handleChange}
       />

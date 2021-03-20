@@ -47,11 +47,10 @@ const Product = ({ productId, navigate }) => {
       0,
     ) ?? undefined;
 
-  console.log(quantity);
-
   if (isLoading) {
     return <Spinner />;
   }
+
   return (
     <>
       <div className="lg:flex">

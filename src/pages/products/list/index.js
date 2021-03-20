@@ -48,10 +48,7 @@ const ProductsList = ({ navigate }) => {
   return (
     <>
       <div className="flex justify-end">
-        <Link
-          to="create"
-          className="mb-12 border rounded text-white text-sm bg-blue-500 hover:bg-blue-700 py-2 px-4 capitalize"
-        >
+        <Link to="create" className="mb-12 text-sm button">
           <Add className="inline-block w-4 h-4" /> new product
         </Link>
       </div>

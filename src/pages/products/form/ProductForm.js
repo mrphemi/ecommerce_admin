@@ -81,7 +81,7 @@ const ProductForm = ({ form, role }) => {
 
       <div className="flex flex-wrap -mx-3 mb-10">
         {/* Sizes */}
-        <p className="px-3 uppercase tracking-wide text-gray-700 font-bold mb-4 capitalize">
+        <p className="px-3 tracking-wide text-gray-700 font-bold mb-4 capitalize">
           Select sizes
         </p>
         <div className="w-full px-3">
@@ -90,10 +90,7 @@ const ProductForm = ({ form, role }) => {
         </div>
       </div>
 
-      <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline capitalize"
-        type="submit"
-      >
+      <button className="button" type="submit">
         {form.isSubmitting
           ? "loading..."
           : role === "create"

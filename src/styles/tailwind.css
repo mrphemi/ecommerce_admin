@@ -5,3 +5,27 @@
 @tailwind components;
 
 @tailwind utilities;
+
+.button {
+  @apply bg-blue-500 text-white py-2 px-4 rounded capitalize;
+}
+
+.button:hover {
+  @apply bg-blue-700;
+}
+
+.form_styles {
+  @apply bg-gray-200 text-gray-700 rounded w-full py-3 px-4 leading-tight;
+}
+
+.form_styles:focus {
+  @apply outline-none bg-white border-gray-500;
+}
+
+.form_label {
+  @apply block tracking-wide text-gray-700 text-sm font-bold mb-2 capitalize;
+}
+
+.error_msg {
+  @apply text-red-500 text-xs italic;
+}
